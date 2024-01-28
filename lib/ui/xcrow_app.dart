@@ -15,7 +15,7 @@ class XCrowApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Xcrow',
       theme: LightTheme.theme,
-      //darkTheme: DarkTheme.theme,
+      darkTheme: DarkTheme.theme,
       //themeMode: ref.watch(themeModeProvider),
       // onGenerateRoute: RouteNames.generateRoute,
       home: const HomePage(),

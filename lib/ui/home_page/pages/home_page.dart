@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xcrow/ui/home_page/widgets/home_page_appbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,9 +7,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home page'),
-      ),
+      appBar: HomePageAppBar(),
     );
   }
 }
