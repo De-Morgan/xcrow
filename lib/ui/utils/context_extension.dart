@@ -15,6 +15,7 @@ extension BuildContextExtension on BuildContext {
 
   TextStyle? get titleMedium => textTheme.titleMedium;
   TextStyle? get titleSmall => textTheme.titleSmall;
+  TextStyle? get bodyMedium => textTheme.bodyMedium;
 
   double get height => MediaQuery.maybeSizeOf(this)?.height ?? 800;
 

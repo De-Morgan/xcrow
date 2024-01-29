@@ -6,7 +6,20 @@ class LightTheme {
           brightness: Brightness.light,
           scaffoldBackgroundColor: _AppColors.white,
           primaryColor: _AppColors.primaryOrange,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(double.maxFinite, 57),
+              elevation: 0,
+              textStyle: _AppTextStyle.normal400Size14,
+              foregroundColor: _AppColors.black03,
+              backgroundColor: _AppColors.primaryOrange,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+          ),
           textTheme: TextTheme(
+            bodyMedium: _AppTextStyle.normal400Size14
+                .copyWith(color: _AppColors.gray02),
             titleMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.blackDeep),
             titleSmall: _AppTextStyle.normal400Size14
@@ -16,6 +29,8 @@ class LightTheme {
             HomeCircularTheme(
               border: _AppColors.primaryOrange,
               background: _AppColors.white,
-            )
+            ),
+            DashboardTheme(
+                border: _AppColors.dashboardBg, background: _AppColors.white),
           ]);
 }
