@@ -31,7 +31,8 @@ class DarkTheme {
               background: _AppColors.primaryOrange,
             ),
             DashboardTheme(
-                border: _AppColors.primaryBlack,
-                background: _AppColors.black02),
+                border: _AppColors.black02, background: _AppColors.black02),
+            AppColors(navBarColor: _AppColors.payBillDarkColor),
+            AppAssetTheme(newYearSvg: SvgPath.darkNewYear)
           ]);
 }

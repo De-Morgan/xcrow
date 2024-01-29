@@ -32,5 +32,7 @@ class LightTheme {
             ),
             DashboardTheme(
                 border: _AppColors.dashboardBg, background: _AppColors.white),
+            AppColors(navBarColor: _AppColors.payBillLightColor),
+            AppAssetTheme(newYearSvg: SvgPath.lightNewYear)
           ]);
 }
