@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
+import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/theme/theme.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
 import 'package:xcrow/ui/utils/svg_path.dart';
@@ -97,6 +98,8 @@ class _NavItem extends StatelessWidget {
             title,
             style: context.titleSmall?.copyWith(
               fontSize: 13,
+              fontWeight: FontWeight.w300,
+              fontFamily: FontFamily.light,
               color: selected ? appColor.navBarColor : null,
             ),
           ),
