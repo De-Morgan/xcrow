@@ -17,6 +17,8 @@ class LightTheme {
                   borderRadius: BorderRadius.circular(8)),
             ),
           ),
+          bottomAppBarTheme: const BottomAppBarTheme(
+              color: _AppColors.white, surfaceTintColor: _AppColors.white),
           textTheme: TextTheme(
             bodyMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.gray02),

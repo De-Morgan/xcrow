@@ -17,6 +17,9 @@ class DarkTheme {
                   borderRadius: BorderRadius.circular(8)),
             ),
           ),
+          bottomAppBarTheme: const BottomAppBarTheme(
+              color: _AppColors.primaryBlack,
+              surfaceTintColor: _AppColors.primaryBlack),
           textTheme: TextTheme(
             bodyMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.gray01),

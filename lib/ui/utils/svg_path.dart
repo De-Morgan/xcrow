@@ -13,4 +13,9 @@ class SvgPath {
 
   static const lightNewYear = '${_root}light_new_year.svg';
   static const darkNewYear = '${_root}dark_new_year.svg';
+
+  static const home = '${_root}home.svg';
+  static const gift = '${_root}gift.svg';
+  static const contact = '${_root}contact.svg';
+  static const setting = '${_root}setting.svg';
 }
