@@ -9,36 +9,36 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPagePaddingWidget(
+    return const ScaffoldPagePaddingWidget(
       child: Scaffold(
-        appBar: const TopAppBarWidget(
+        appBar: TopAppBarWidget(
           title: 'User Settings',
         ),
         body: Column(
           children: [
-            const SizedBox(height: 8),
-            const AppListTile(
-              leadingSvg: SvgPath.message,
+            SizedBox(height: 8),
+            AppListTile(
+              leadingSvg: SvgPath.ellipse,
               title: 'Hi, Goodness Davies',
               subtitle: 'contactblugraviti@gmail.com',
             ),
-            const AppListTile(
-              leadingSvg: SvgPath.chat,
+            AppListTile(
+              leadingSvg: SvgPath.userSetting,
               title: 'User Settings',
               subtitle: 'Change Password',
             ),
-            const AppListTile(
-              leadingSvg: SvgPath.review,
+            AppListTile(
+              leadingSvg: SvgPath.wallet,
               title: 'Wallet',
               subtitle: 'Change Transaction Pin',
             ),
-            const AppListTile(
-              leadingSvg: SvgPath.phone,
+            AppListTile(
+              leadingSvg: SvgPath.preference,
               title: 'Preference',
               subtitle: 'Appearance & Display',
             ),
-            const AppListTile(
-              leadingSvg: SvgPath.phone,
+            AppListTile(
+              leadingSvg: SvgPath.refferal,
               title: 'Refer a friend',
             ),
           ],

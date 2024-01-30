@@ -29,4 +29,10 @@ class SvgPath {
   static const instagram = '${_root}instagram.svg';
   static const whatsapp = '${_root}whatsapp.svg';
   static const youtube = '${_root}youtube.svg';
+
+  static const ellipse = '${_root}ellipse.svg';
+  static const preference = '${_root}preference.svg';
+  static const refferal = '${_root}refferal.svg';
+  static const wallet = '${_root}wallet.svg';
+  static const userSetting = '${_root}user_setting.svg';
 }

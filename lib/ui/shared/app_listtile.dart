@@ -34,6 +34,7 @@ class AppListTile extends StatelessWidget {
           switch (leadingSvg != null) {
             true => SvgWidget(
                 svgPath: '$leadingSvg',
+                width: 20,
               ),
             false => null
           },
