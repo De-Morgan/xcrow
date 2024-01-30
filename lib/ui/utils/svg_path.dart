@@ -18,4 +18,10 @@ class SvgPath {
   static const gift = '${_root}gift.svg';
   static const contact = '${_root}contact.svg';
   static const setting = '${_root}setting.svg';
+
+  static const message = '${_root}message.svg';
+  static const chat = '${_root}chat.svg';
+  static const review = '${_root}review.svg';
+  static const phone = '${_root}phone.svg';
+  static const conversation = '${_root}conversation.svg';
 }

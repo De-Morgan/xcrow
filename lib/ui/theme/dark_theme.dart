@@ -6,6 +6,26 @@ class DarkTheme {
           brightness: Brightness.dark,
           scaffoldBackgroundColor: _AppColors.primaryBlack,
           primaryColor: _AppColors.primaryOrange,
+          appBarTheme: AppBarTheme(
+              elevation: 0,
+              centerTitle: false,
+              backgroundColor: _AppColors.primaryBlack,
+              iconTheme: const IconThemeData(color: _AppColors.kA7A3A3),
+              titleTextStyle: _AppTextStyle.normal400Size14.copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: _AppColors.kA7A3A3)),
+          listTileTheme: ListTileThemeData(
+            titleTextStyle: _AppTextStyle.normal400Size14
+                .copyWith(color: _AppColors.primaryOrange),
+            subtitleTextStyle: _AppTextStyle.normal400Size14.copyWith(
+                color: _AppColors.kA7A3A3,
+                fontWeight: FontWeight.w300,
+                fontSize: 11),
+            iconColor: _AppColors.kA7A3A3,
+            horizontalTitleGap: 20,
+            visualDensity: VisualDensity.compact,
+          ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.maxFinite, 57),
@@ -34,7 +54,7 @@ class DarkTheme {
               background: _AppColors.primaryOrange,
             ),
             DashboardTheme(
-                border: _AppColors.black02, background: _AppColors.black02),
+                border: _AppColors.k272626, background: _AppColors.k272626),
             AppColors(navBarColor: _AppColors.payBillDarkColor),
             AppAssetTheme(newYearSvg: SvgPath.darkNewYear)
           ]);

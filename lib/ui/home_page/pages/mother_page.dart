@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xcrow/ui/contact_us/pages/contact_us_page.dart';
 import 'package:xcrow/ui/home_page/pages/home_page.dart';
 import 'package:xcrow/ui/home_page/widgets/button_nav_widget.dart';
 
@@ -9,7 +10,7 @@ class MotherPage extends ConsumerWidget {
   static const pages = [
     HomePage(),
     SizedBox(),
-    SizedBox(),
+    ContactUsPage(),
     SizedBox(),
   ];
 
