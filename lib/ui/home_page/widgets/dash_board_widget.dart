@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xcrow/ui/home_page/pages/add_money_page.dart';
 import 'package:xcrow/ui/shared/button_container.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
@@ -51,7 +52,9 @@ class DashboardWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               ButtonContainer(
-                onPressed: () {},
+                onPressed: () {
+                  context.push(const AddMoneyPage());
+                },
                 label: '+ Add Money',
               ),
               const Spacer(),
