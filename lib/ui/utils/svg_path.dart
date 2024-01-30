@@ -24,4 +24,9 @@ class SvgPath {
   static const review = '${_root}review.svg';
   static const phone = '${_root}phone.svg';
   static const conversation = '${_root}conversation.svg';
+
+  static const facebook = '${_root}facebook.svg';
+  static const instagram = '${_root}instagram.svg';
+  static const whatsapp = '${_root}whatsapp.svg';
+  static const youtube = '${_root}youtube.svg';
 }

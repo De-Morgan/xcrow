@@ -29,6 +29,7 @@ class AppListTile extends StatelessWidget {
             true => Text(subtitle),
             false => null
           },
+      dense: true,
       leading: leading ??
           switch (leadingSvg != null) {
             true => SvgWidget(
