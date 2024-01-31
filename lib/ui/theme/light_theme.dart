@@ -39,6 +39,23 @@ class LightTheme {
           ),
           bottomAppBarTheme: const BottomAppBarTheme(
               color: _AppColors.white, surfaceTintColor: _AppColors.white),
+          inputDecorationTheme: InputDecorationTheme(
+              constraints: const BoxConstraints(
+                minHeight: 57,
+              ),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              hintStyle: _AppTextStyle.normal300Size14
+                  .copyWith(fontSize: 13, fontWeight: FontWeight.w200),
+              border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: _AppColors.k6B6A6A),
+                  borderRadius: BorderRadius.circular(8)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: _AppColors.k6B6A6A),
+                  borderRadius: BorderRadius.circular(8)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: _AppColors.k141313),
+                  borderRadius: BorderRadius.circular(8))),
           textTheme: TextTheme(
             bodyMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.gray02),
@@ -54,7 +71,10 @@ class LightTheme {
             ),
             DashboardTheme(
                 border: _AppColors.kF9F9FA, background: _AppColors.white),
-            AppColors(navBarColor: _AppColors.payBillLightColor),
+            AppColors(
+                navBarColor: _AppColors.payBillLightColor,
+                outlineColor: _AppColors.k797575,
+                amountBgColor: _AppColors.kF9F9FA),
             AppAssetTheme(newYearSvg: SvgPath.lightNewYear)
           ]);
 }

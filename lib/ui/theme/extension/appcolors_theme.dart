@@ -2,19 +2,20 @@ part of theme;
 
 class AppColors extends ThemeExtension<AppColors> {
   final Color? navBarColor;
+  final Color? outlineColor;
+  final Color? amountBgColor;
 
-  const AppColors({
-    this.navBarColor,
-  });
+  const AppColors({this.navBarColor, this.amountBgColor, this.outlineColor});
 
   @override
   ThemeExtension<AppColors> copyWith({
     Color? navBarColor,
-    Color? border,
+    Color? outlineColor,
   }) {
     return AppColors(
-      navBarColor: navBarColor ?? this.navBarColor,
-    );
+        navBarColor: navBarColor ?? this.navBarColor,
+        amountBgColor: amountBgColor,
+        outlineColor: outlineColor ?? this.outlineColor);
   }
 
   @override
@@ -24,6 +25,8 @@ class AppColors extends ThemeExtension<AppColors> {
     }
     return AppColors(
       navBarColor: Color.lerp(navBarColor, other.navBarColor, t),
+      outlineColor: Color.lerp(outlineColor, other.outlineColor, t),
+      amountBgColor: Color.lerp(amountBgColor, other.amountBgColor, t),
     );
   }
 }

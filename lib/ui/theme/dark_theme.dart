@@ -39,6 +39,23 @@ class DarkTheme {
           ),
           bottomAppBarTheme: const BottomAppBarTheme(
               color: _AppColors.k141313, surfaceTintColor: _AppColors.k141313),
+          inputDecorationTheme: InputDecorationTheme(
+              constraints: const BoxConstraints(
+                minHeight: 57,
+              ),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              hintStyle: _AppTextStyle.normal300Size14
+                  .copyWith(fontSize: 13, fontWeight: FontWeight.w200),
+              border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: _AppColors.kA7A3A3),
+                  borderRadius: BorderRadius.circular(8)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: _AppColors.kA7A3A3),
+                  borderRadius: BorderRadius.circular(8)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: _AppColors.kFFCC00),
+                  borderRadius: BorderRadius.circular(8))),
           textTheme: TextTheme(
             bodyMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.gray01),
@@ -54,7 +71,10 @@ class DarkTheme {
             ),
             DashboardTheme(
                 border: _AppColors.k272626, background: _AppColors.k272626),
-            AppColors(navBarColor: _AppColors.payBillDarkColor),
+            AppColors(
+                navBarColor: _AppColors.payBillDarkColor,
+                outlineColor: _AppColors.kA7A3A3,
+                amountBgColor: _AppColors.k312E2E),
             AppAssetTheme(newYearSvg: SvgPath.darkNewYear)
           ]);
 }
