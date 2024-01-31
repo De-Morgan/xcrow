@@ -4,12 +4,12 @@ class DarkTheme {
   static ThemeData get theme => ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
-          scaffoldBackgroundColor: _AppColors.primaryBlack,
-          primaryColor: _AppColors.primaryOrange,
+          scaffoldBackgroundColor: _AppColors.k141313,
+          primaryColor: _AppColors.kFFCC00,
           appBarTheme: AppBarTheme(
               elevation: 0,
               centerTitle: false,
-              backgroundColor: _AppColors.primaryBlack,
+              backgroundColor: _AppColors.k141313,
               iconTheme: const IconThemeData(color: _AppColors.kA7A3A3),
               titleTextStyle: _AppTextStyle.normal400Size14.copyWith(
                   fontSize: 16,
@@ -17,7 +17,7 @@ class DarkTheme {
                   color: _AppColors.kA7A3A3)),
           listTileTheme: ListTileThemeData(
             titleTextStyle: _AppTextStyle.normal400Size14
-                .copyWith(color: _AppColors.primaryOrange),
+                .copyWith(color: _AppColors.kFFCC00),
             subtitleTextStyle: _AppTextStyle.normal400Size14.copyWith(
                 color: _AppColors.kA7A3A3,
                 fontWeight: FontWeight.w300,
@@ -31,27 +31,26 @@ class DarkTheme {
               minimumSize: const Size(double.maxFinite, 57),
               elevation: 0,
               textStyle: _AppTextStyle.normal400Size14,
-              foregroundColor: _AppColors.primaryBlack,
-              backgroundColor: _AppColors.primaryOrange,
+              foregroundColor: _AppColors.k141313,
+              backgroundColor: _AppColors.kFFCC00,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
             ),
           ),
           bottomAppBarTheme: const BottomAppBarTheme(
-              color: _AppColors.primaryBlack,
-              surfaceTintColor: _AppColors.primaryBlack),
+              color: _AppColors.k141313, surfaceTintColor: _AppColors.k141313),
           textTheme: TextTheme(
             bodyMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.gray01),
             titleMedium: _AppTextStyle.normal400Size14
-                .copyWith(color: _AppColors.primaryOrange),
+                .copyWith(color: _AppColors.kFFCC00),
             titleSmall: _AppTextStyle.normal400Size14
                 .copyWith(fontSize: 10, color: _AppColors.gray01),
           ),
           extensions: const [
             HomeCircularTheme(
-              border: _AppColors.black01,
-              background: _AppColors.primaryOrange,
+              border: _AppColors.k302F2E,
+              background: _AppColors.kFFCC00,
             ),
             DashboardTheme(
                 border: _AppColors.k272626, background: _AppColors.k272626),

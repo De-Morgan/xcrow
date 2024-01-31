@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:xcrow/ui/home_page/pages/add_by_card.dart';
 import 'package:xcrow/ui/home_page/pages/bank_transfer_page.dart';
+import 'package:xcrow/ui/home_page/pages/your_ngn_account.dart';
 import 'package:xcrow/ui/home_page/widgets/account_num_widget.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
 import 'package:xcrow/ui/home_page/widgets/new_year_widget.dart';
@@ -47,6 +49,7 @@ class AddMoneyPage extends StatelessWidget {
                 title: 'Cash Deposit',
                 subtitle: 'Fund your account with nearby merchants',
                 trailing: Icon(Icons.keyboard_arrow_right_rounded),
+                onTap: () => context.push(YourNgnAccountPage()),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16, top: 10),
@@ -57,6 +60,7 @@ class AddMoneyPage extends StatelessWidget {
                 title: 'Top-up with Card/Account',
                 subtitle: 'Add money directly from your bank card or account',
                 trailing: Icon(Icons.keyboard_arrow_right_rounded),
+                onTap: () => context.push(AddByCardPage()),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16, top: 10),

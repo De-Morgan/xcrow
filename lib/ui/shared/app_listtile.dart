@@ -13,6 +13,7 @@ class AppListTile extends StatelessWidget {
       this.trailingSvg,
       this.trailing,
       this.onTap,
+      this.padding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
       this.leadingSvg});
 
   final String title;
@@ -28,12 +29,14 @@ class AppListTile extends StatelessWidget {
   final Widget? trailing;
   final VoidCallback? onTap;
 
+  final EdgeInsets padding;
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+        padding: padding,
         child: IconTheme(
           data: IconThemeData(color: context.listTileThemeData.iconColor),
           child: Row(
@@ -50,7 +53,8 @@ class AppListTile extends StatelessWidget {
                               color: context.listTileThemeData.iconColor),
                           false => const SizedBox()
                         },
-                    const SizedBox(width: 16),
+                    if (leading != null || leadingSvg != null)
+                      const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,32 +92,6 @@ class AppListTile extends StatelessWidget {
           ),
         ),
       ),
-    );
-    //todo delete
-    return ListTile(
-      title: titleWidget ?? Text(title),
-      subtitle: subtitleWidget ??
-          switch (subtitle.isNotEmpty) {
-            true => Text(subtitle),
-            false => null
-          },
-      dense: true,
-      leading: leading ??
-          switch (leadingSvg != null) {
-            true => SvgWidget(
-                svgPath: '$leadingSvg',
-                width: 20,
-              ),
-            false => null
-          },
-      trailing: trailing ??
-          switch (trailingSvg != null) {
-            true => SvgWidget(
-                svgPath: '$trailingSvg',
-                width: 20,
-              ),
-            false => null
-          },
     );
   }
 }

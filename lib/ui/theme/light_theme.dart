@@ -5,7 +5,7 @@ class LightTheme {
           useMaterial3: true,
           brightness: Brightness.light,
           scaffoldBackgroundColor: _AppColors.white,
-          primaryColor: _AppColors.primaryOrange,
+          primaryColor: _AppColors.kFFCC00,
           appBarTheme: AppBarTheme(
               elevation: 0,
               centerTitle: false,
@@ -32,7 +32,7 @@ class LightTheme {
               elevation: 0,
               textStyle: _AppTextStyle.normal400Size14,
               foregroundColor: _AppColors.k272626,
-              backgroundColor: _AppColors.primaryOrange,
+              backgroundColor: _AppColors.kFFCC00,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
             ),
@@ -49,11 +49,11 @@ class LightTheme {
           ),
           extensions: const [
             HomeCircularTheme(
-              border: _AppColors.primaryOrange,
+              border: _AppColors.kFFCC00,
               background: _AppColors.white,
             ),
             DashboardTheme(
-                border: _AppColors.dashboardBg, background: _AppColors.white),
+                border: _AppColors.kF9F9FA, background: _AppColors.white),
             AppColors(navBarColor: _AppColors.payBillLightColor),
             AppAssetTheme(newYearSvg: SvgPath.lightNewYear)
           ]);
