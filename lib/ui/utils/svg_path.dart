@@ -43,4 +43,6 @@ class SvgPath {
   static const cashDeposit = '${_root}cash_deposit.svg';
 
   static const copy = '${_root}copy.svg';
+  static const google = '${_root}google.svg';
+  static const apple = '${_root}apple.svg';
 }

@@ -58,7 +58,7 @@ class LightTheme {
                   borderRadius: BorderRadius.circular(8))),
           textTheme: TextTheme(
             bodyMedium: _AppTextStyle.normal400Size14
-                .copyWith(color: _AppColors.gray02),
+                .copyWith(color: _AppColors.k141313),
             titleMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.k272626),
             titleSmall: _AppTextStyle.normal400Size14
