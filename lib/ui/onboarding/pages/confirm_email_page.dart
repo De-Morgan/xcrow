@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
+import 'package:xcrow/ui/onboarding/pages/sign_up_step_three.dart';
 import 'package:xcrow/ui/shared/app_button.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
 import 'package:xcrow/ui/shared/text_action_row.dart';
@@ -76,7 +77,9 @@ class ConfirmEmailPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 AppButton.elevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(SignUpStepThree());
+                  },
                   label: 'Next',
                 )
               ],
