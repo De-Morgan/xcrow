@@ -18,7 +18,8 @@ extension BuildContextExtension on BuildContext {
   TextStyle? get bodyMedium => textTheme.bodyMedium;
 
   ListTileThemeData get listTileThemeData => themeData.listTileTheme;
-
+  InputDecorationTheme get inputDecorationTheme =>
+      themeData.inputDecorationTheme;
   double get height => MediaQuery.maybeSizeOf(this)?.height ?? 800;
 
   double get width => MediaQuery.maybeSizeOf(this)?.width ?? 320;

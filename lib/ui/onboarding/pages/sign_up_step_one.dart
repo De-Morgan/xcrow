@@ -5,6 +5,7 @@ import 'package:xcrow/ui/onboarding/pages/confirm_email_page.dart';
 import 'package:xcrow/ui/onboarding/widgets/social_buttons.dart';
 import 'package:xcrow/ui/shared/app_button.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
+import 'package:xcrow/ui/shared/drop_down_widget.dart';
 import 'package:xcrow/ui/shared/text_action_row.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
@@ -23,39 +24,42 @@ class SignUpStepOne extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 32),
-                    Text(
-                      "Create a Xcrow profile with a few details. Your password must have at least 8 characters including letters and a number.",
-                      style: context.bodyMedium?.copyWith(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w300,
-                          height: 16.4 / 14),
-                    ),
-                    SizedBox(height: 32),
-                    Consumer(
-                      builder:
-                          (BuildContext context, WidgetRef ref, Widget? child) {
-                        final index = ref.watch(_pageIndexProvider);
-                        return IndexedStack(
-                          index: index,
-                          children: [
-                            _StepOneWidget(),
-                            child!,
-                          ],
-                        );
-                      },
-                      child: _StepTwoWidget(),
-                    ),
-                    Spacer(),
-                  ],
+              flex: 20,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 32),
+                      Text(
+                        "Create a Xcrow profile with a few details. Your password must have at least 8 characters including letters and a number.",
+                        style: context.bodyMedium?.copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            height: 16.4 / 14),
+                      ),
+                      SizedBox(height: 32),
+                      Consumer(
+                        builder: (BuildContext context, WidgetRef ref,
+                            Widget? child) {
+                          final index = ref.watch(_pageIndexProvider);
+                          return IndexedStack(
+                            index: index,
+                            children: [
+                              _StepOneWidget(),
+                              child!,
+                            ],
+                          );
+                        },
+                        child: _StepTwoWidget(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
+            Spacer(),
             SocialButtons(),
             const SizedBox(height: 16),
           ],
@@ -136,8 +140,12 @@ class _StepTwoWidget extends StatelessWidget {
           decoration: InputDecoration(hintText: 'Surname name'),
         ),
         const SizedBox(height: 20),
-        TextField(
-          decoration: InputDecoration(hintText: 'Gender'),
+        AppDropDownWidget(
+          title: 'Gender',
+          data: ['Male', 'Female'],
+          builder: (data) {
+            return Text(data);
+          },
         ),
         const SizedBox(height: 20),
         TextField(
