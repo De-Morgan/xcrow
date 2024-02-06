@@ -97,7 +97,7 @@ extension BuildContextExtension on BuildContext {
         content: Row(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 2.0, right: 8),
+              padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
               child: Icon(
                 Icons.error_outline_rounded,
                 color: errorColor,
@@ -107,19 +107,33 @@ extension BuildContextExtension on BuildContext {
               child: Text(
                 error.toString(),
                 maxLines: 2,
-                style: textTheme.bodyText1,
               ),
             ),
           ],
         ),
-        backgroundColor: themeData.cardColor,
-        action: SnackBarAction(
-            label: 'Dismiss',
-            //  textColor: const Color(0xffffffff),
-            onPressed: () {
-              ScaffoldMessenger.of(this).clearSnackBars();
-            }),
+        // action: SnackBarAction(
+        //     label: 'Dismiss',
+        //     //  textColor: const Color(0xffffffff),
+        //     onPressed: () {
+        //       ScaffoldMessenger.of(this).clearSnackBars();
+        //     }),
         padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+        duration: duration,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void showToast(String message,
+      {Duration duration = const Duration(seconds: 3)}) {
+    ScaffoldMessenger.of(this).clearSnackBars();
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          maxLines: 2,
+        ),
+        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
         duration: duration,
         behavior: SnackBarBehavior.floating,
       ),

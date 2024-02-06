@@ -63,6 +63,7 @@ class DarkTheme {
                 .copyWith(color: _AppColors.kFFCC00),
             titleSmall: _AppTextStyle.normal400Size14
                 .copyWith(fontSize: 10, color: _AppColors.gray01),
+            bodyLarge: _AppTextStyle.normal400Size14.copyWith(fontSize: 14),
           ),
           extensions: const [
             HomeCircularTheme(

@@ -42,17 +42,19 @@ class CopyShareAcctNumberWidget extends StatelessWidget {
         RoundBorderWidget(
           height: 44,
           width: 134,
-          child: Row(
-            children: [
-              SvgWidget(
-                svgPath: SvgPath.copy,
-              ),
-              const SizedBox(width: 6),
-              Text(
-                'Copy Number',
-                style: TextStyle(fontSize: 13),
-              )
-            ],
+          child: FittedBox(
+            child: Row(
+              children: [
+                SvgWidget(
+                  svgPath: SvgPath.copy,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'Copy Number',
+                  style: TextStyle(fontSize: 13),
+                )
+              ],
+            ),
           ),
         ),
         Spacer(),

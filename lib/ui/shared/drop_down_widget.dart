@@ -9,7 +9,7 @@ class AppDropDownWidget<T> extends HookConsumerWidget {
   final String title;
   final List<T> data;
   final Stream<bool>? loading;
-  final T? defaultData;
+  final T? initialData;
   final DropDownBuilder<T> builder;
   final ValueChanged<T>? onChange;
   final Color? fillColor;
@@ -21,7 +21,7 @@ class AppDropDownWidget<T> extends HookConsumerWidget {
     required this.builder,
     this.fillColor,
     this.onChange,
-    this.defaultData,
+    this.initialData,
     this.loading,
     this.readOnly = false,
     Key? key,
@@ -29,7 +29,7 @@ class AppDropDownWidget<T> extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedData = useState<T?>(defaultData);
+    final selectedData = useState<T?>(initialData);
     return Container(
       width: double.maxFinite,
       decoration: BoxDecoration(

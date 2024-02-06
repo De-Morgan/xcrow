@@ -63,6 +63,7 @@ class LightTheme {
                 .copyWith(color: _AppColors.k272626),
             titleSmall: _AppTextStyle.normal400Size14
                 .copyWith(fontSize: 10, color: _AppColors.k272626),
+            bodyLarge: _AppTextStyle.normal400Size14.copyWith(fontSize: 14),
           ),
           extensions: const [
             HomeCircularTheme(

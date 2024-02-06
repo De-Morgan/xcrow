@@ -3,8 +3,8 @@ enum Environment { staging, production }
 
 extension on Environment {
   String get baseUrl => switch (this) {
-        Environment.staging => 'http://stage.api.shypes.com/',
-        Environment.production => 'https://api.shypes.com/'
+        Environment.staging => 'https://paytal.microuserng.com/api/',
+        Environment.production => 'https://paytal.microuserng.com/api/'
       };
 
   bool get isStaging => switch (this) {

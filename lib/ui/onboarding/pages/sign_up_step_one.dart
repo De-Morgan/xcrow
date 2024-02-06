@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:xcrow/core/models/language_enum.dart';
+import 'package:xcrow/core/repository/user_repository.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
 import 'package:xcrow/ui/onboarding/pages/confirm_email_page.dart';
+import 'package:xcrow/ui/onboarding/providers/selected_phone_number.dart';
 import 'package:xcrow/ui/onboarding/widgets/social_buttons.dart';
 import 'package:xcrow/ui/shared/app_button.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
 import 'package:xcrow/ui/shared/drop_down_widget.dart';
+import 'package:xcrow/ui/shared/round_border_widget.dart';
 import 'package:xcrow/ui/shared/text_action_row.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
+import 'package:xcrow/ui/utils/input_validator.dart';
 
 class SignUpStepOne extends StatelessWidget {
   const SignUpStepOne({super.key});
@@ -45,7 +52,7 @@ class SignUpStepOne extends StatelessWidget {
                         return IndexedStack(
                           index: index,
                           children: [
-                            const _StepOneWidget(),
+                            _StepOneWidget(),
                             child!,
                           ],
                         );
@@ -65,46 +72,99 @@ class SignUpStepOne extends StatelessWidget {
   }
 }
 
-class _StepOneWidget extends ConsumerWidget {
-  const _StepOneWidget({super.key});
+class _StepOneWidget extends HookConsumerWidget with InputValidatorMixin {
+  _StepOneWidget({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Text(
-            'Step 1/3',
-            style: context.titleMedium?.copyWith(
-                fontWeight: FontWeight.w200,
-                fontFamily: FontFamily.light,
-                fontSize: 17),
+    final email = useTextEditingController();
+    final userRepo = ref.watch(userRepositoryProvider);
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Text(
+              'Step 1/3',
+              style: context.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w200,
+                  fontFamily: FontFamily.light,
+                  fontSize: 17),
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-        const TextField(
-          decoration: InputDecoration(hintText: '+234 xxxxxxxxxxxx'),
-        ),
-        const SizedBox(height: 20),
-        const TextField(
-          decoration: InputDecoration(hintText: 'English'),
-        ),
-        const SizedBox(height: 20),
-        const TextField(
-          decoration: InputDecoration(hintText: 'Email Address'),
-        ),
-        const SizedBox(height: 52),
-        AppButton.elevatedButton(
-          label: 'Create an Account',
-          onPressed: () {
-            ref.read(_pageIndexProvider.notifier).state = 1;
-          },
-        ),
-        const SizedBox(height: 24),
-        const _AlreadyHasAccount()
-      ],
+          const SizedBox(height: 20),
+          RoundBorderWidget(
+            // height: 57,
+            padding: EdgeInsets.zero,
+            child: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber value) {
+                ref.read(selectedPhoneNumberProvider.notifier).state = value;
+              },
+              initialValue: PhoneNumber(isoCode: 'NG'),
+              spaceBetweenSelectorAndTextField: 0,
+              validator: (_) => null,
+              inputDecoration: const InputDecoration(
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.only(bottom: 10)),
+            ),
+          ),
+          const SizedBox(height: 20),
+          AppDropDownWidget<Language>(
+            data: Language.values,
+            title: 'Select language',
+            initialData: Language.English,
+            builder: (Language data) => Text(data.name),
+            onChange: (value) =>
+                ref.read(selectedLanguageProvider.notifier).state = value,
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            controller: email,
+            keyboardType: TextInputType.emailAddress,
+            validator: (value) =>
+                isEmailValid(value) ? null : 'Enter a valid email address',
+            decoration: const InputDecoration(
+              hintText: 'Email Address',
+            ),
+          ),
+          const SizedBox(height: 52),
+          HookConsumer(
+            builder: (BuildContext context, WidgetRef ref, Widget? child) {
+              final loading = useStreamController<bool>();
+              return AppButton.elevatedButton(
+                label: 'Create an Account',
+                loading: loading.stream,
+                onPressed: () async {
+                  if (!_formKey.currentState!.validate()) return;
+                  final phone = ref.read(selectedPhoneNumberProvider);
+                  if (phone?.phoneNumber == null) {
+                    context.showToast('Enter a valid phone number');
+                    return;
+                  }
+                  try {
+                    loading.add(true);
+                    await userRepo.phoneExist(phone: '${phone?.phoneNumber}');
+                    await userRepo.emailExist(email: email.text);
+                    ref.read(_pageIndexProvider.notifier).state = 1;
+                  } catch (error) {
+                    context.showError(error);
+                  } finally {
+                    loading.add(false);
+                  }
+                },
+              );
+            },
+          ),
+          const SizedBox(height: 24),
+          const _AlreadyHasAccount()
+        ],
+      ),
     );
   }
 }
@@ -138,7 +198,7 @@ class _StepTwoWidget extends StatelessWidget {
         const SizedBox(height: 20),
         AppDropDownWidget(
           title: 'Gender',
-          data: ['Male', 'Female'],
+          data: const ['Male', 'Female'],
           builder: (data) {
             return Text(data);
           },
@@ -155,7 +215,8 @@ class _StepTwoWidget extends StatelessWidget {
           },
         ),
         const SizedBox(height: 24),
-        const _AlreadyHasAccount()
+        const _AlreadyHasAccount(),
+        const SizedBox(height: 24),
       ],
     );
   }

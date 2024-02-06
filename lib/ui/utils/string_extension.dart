@@ -11,6 +11,11 @@ extension StringExtension on String? {
             : ''
       };
 
+  String get nullToEmpty {
+    if (this == null) return '';
+    return this!;
+  }
+
   String get capitalizeFirstOfEachWord => switch (this) {
         null => '',
         _ => this!

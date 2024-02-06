@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xcrow/ui/utils/context_extension.dart';
 
 class AppButton extends StatelessWidget {
   final String label;
@@ -88,12 +89,11 @@ class AppButton extends StatelessWidget {
               initialData: false,
               builder: (context, snapshot) {
                 if (snapshot.data ?? false) {
-                  return ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                      ),
-                      child: CircularProgressIndicator());
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: context.primaryColor,
+                    ),
+                  );
                 }
                 return ElevatedButton(
                     style: style,
