@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:xcrow/core/models/gender.dart';
 import 'package:xcrow/core/models/language_enum.dart';
+import 'package:xcrow/core/repository/email_repository.dart';
 import 'package:xcrow/core/repository/user_repository.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
 import 'package:xcrow/ui/onboarding/pages/confirm_email_page.dart';
@@ -57,7 +59,7 @@ class SignUpStepOne extends StatelessWidget {
                           ],
                         );
                       },
-                      child: const _StepTwoWidget(),
+                      child: _StepTwoWidget(),
                     ),
                   ],
                 ),
@@ -72,14 +74,14 @@ class SignUpStepOne extends StatelessWidget {
   }
 }
 
-class _StepOneWidget extends HookConsumerWidget with InputValidatorMixin {
+class _StepOneWidget extends ConsumerWidget with InputValidatorMixin {
   _StepOneWidget({super.key});
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final email = useTextEditingController();
+    final email = ref.watch(signupEmailProvider);
     final userRepo = ref.watch(userRepositoryProvider);
     return Form(
       key: _formKey,
@@ -169,55 +171,108 @@ class _StepOneWidget extends HookConsumerWidget with InputValidatorMixin {
   }
 }
 
-class _StepTwoWidget extends StatelessWidget {
-  const _StepTwoWidget({super.key});
+class _StepTwoWidget extends ConsumerWidget with InputValidatorMixin {
+  _StepTwoWidget({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Text(
-            'Step 2/3',
-            style: context.titleMedium?.copyWith(
-                fontWeight: FontWeight.w200,
-                fontFamily: FontFamily.light,
-                fontSize: 17),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final firstName = ref.watch(firstNameEmailProvider);
+    final surname = ref.watch(surnameEmailProvider);
+    final username = ref.watch(usernameEmailProvider);
+    final emailRepo = ref.watch(emailRepositoryProvider);
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Text(
+              'Step 2/3',
+              style: context.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w200,
+                  fontFamily: FontFamily.light,
+                  fontSize: 17),
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-        const TextField(
-          decoration: InputDecoration(hintText: 'First name'),
-        ),
-        const SizedBox(height: 20),
-        const TextField(
-          decoration: InputDecoration(hintText: 'Surname name'),
-        ),
-        const SizedBox(height: 20),
-        AppDropDownWidget(
-          title: 'Gender',
-          data: const ['Male', 'Female'],
-          builder: (data) {
-            return Text(data);
-          },
-        ),
-        const SizedBox(height: 20),
-        const TextField(
-          decoration: InputDecoration(hintText: 'User Name'),
-        ),
-        const SizedBox(height: 20),
-        AppButton.elevatedButton(
-          label: 'Next',
-          onPressed: () {
-            context.push(const ConfirmEmailPage());
-          },
-        ),
-        const SizedBox(height: 24),
-        const _AlreadyHasAccount(),
-        const SizedBox(height: 24),
-      ],
+          const SizedBox(height: 20),
+          TextFormField(
+            controller: firstName,
+            validator: (value) =>
+                isNameValid(value) ? null : 'Enter a valid name',
+            decoration: InputDecoration(hintText: 'First name'),
+            textInputAction: TextInputAction.next,
+            textCapitalization: TextCapitalization.words,
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            controller: surname,
+            validator: (value) =>
+                isNameValid(value) ? null : 'Enter a valid name',
+            decoration: InputDecoration(hintText: 'Surname'),
+            textInputAction: TextInputAction.next,
+            textCapitalization: TextCapitalization.words,
+          ),
+          const SizedBox(height: 20),
+          AppDropDownWidget(
+            title: 'Gender',
+            data: Gender.values,
+            builder: (data) {
+              return Text(data.name);
+            },
+            onChange: (value) =>
+                ref.read(selectedGenderProvider.notifier).state = value,
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            controller: username,
+            validator: (value) =>
+                isNameValid(value) ? null : 'Enter a valid username',
+            decoration: InputDecoration(hintText: 'Username'),
+            textInputAction: TextInputAction.done,
+          ),
+          const SizedBox(height: 20),
+          HookConsumer(
+            builder: (BuildContext context, WidgetRef ref, Widget? child) {
+              final loading = useStreamController<bool>();
+              return AppButton.elevatedButton(
+                label: 'Next',
+                loading: loading.stream,
+                onPressed: () async {
+                  if (!_formKey.currentState!.validate()) return;
+                  final gender = ref.read(selectedGenderProvider);
+                  if (gender == null) {
+                    context.showToast('Select your gender');
+                    return;
+                  }
+                  try {
+                    loading.add(true);
+                    final phone = ref.read(selectedPhoneNumberProvider);
+                    final email = ref.read(signupEmailProvider).text;
+                    final otpResponse = await emailRepo.emailOtp(
+                        phoneCode: '${phone?.dialCode}',
+                        countryCode: '${phone?.isoCode}',
+                        phone: '${phone?.phoneNumber}',
+                        email: email);
+                    ref.read(emailOtpProvider.notifier).state = otpResponse.otp;
+                    print('otpResponse.otp ${otpResponse.otp}');
+                    context.push(const ConfirmEmailPage());
+                  } catch (error) {
+                    context.showError(error);
+                  } finally {
+                    loading.add(false);
+                  }
+                },
+              );
+            },
+          ),
+          const SizedBox(height: 24),
+          const _AlreadyHasAccount(),
+          const SizedBox(height: 24),
+        ],
+      ),
     );
   }
 }
