@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:xcrow/core/models/gender.dart';
 import 'package:xcrow/core/models/language_enum.dart';
-import 'package:xcrow/core/repository/email_repository.dart';
 import 'package:xcrow/core/repository/user_repository.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
 import 'package:xcrow/ui/onboarding/pages/confirm_email_page.dart';
@@ -18,6 +17,8 @@ import 'package:xcrow/ui/shared/text_action_row.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
 import 'package:xcrow/ui/utils/input_validator.dart';
+
+import '../providers/email_otp_provider.dart';
 
 class SignUpStepOne extends StatelessWidget {
   const SignUpStepOne({super.key});
@@ -181,7 +182,6 @@ class _StepTwoWidget extends ConsumerWidget with InputValidatorMixin {
     final firstName = ref.watch(firstNameEmailProvider);
     final surname = ref.watch(surnameEmailProvider);
     final username = ref.watch(usernameEmailProvider);
-    final emailRepo = ref.watch(emailRepositoryProvider);
     return Form(
       key: _formKey,
       child: Column(
@@ -249,15 +249,7 @@ class _StepTwoWidget extends ConsumerWidget with InputValidatorMixin {
                   }
                   try {
                     loading.add(true);
-                    final phone = ref.read(selectedPhoneNumberProvider);
-                    final email = ref.read(signupEmailProvider).text;
-                    final otpResponse = await emailRepo.emailOtp(
-                        phoneCode: '${phone?.dialCode}',
-                        countryCode: '${phone?.isoCode}',
-                        phone: '${phone?.phoneNumber}',
-                        email: email);
-                    ref.read(emailOtpProvider.notifier).state = otpResponse.otp;
-                    print('otpResponse.otp ${otpResponse.otp}');
+                    await ref.read(sendEmailOtpProvider.future);
                     context.push(const ConfirmEmailPage());
                   } catch (error) {
                     context.showError(error);

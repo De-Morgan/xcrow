@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
-import 'package:xcrow/ui/onboarding/pages/sign_up_step_three.dart';
 import 'package:xcrow/ui/shared/app_button.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
-import 'package:xcrow/ui/shared/text_action_row.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
 
-class ConfirmEmailPage extends StatelessWidget {
+import '../providers/email_otp_provider.dart';
+import '../providers/selected_phone_number.dart';
+import 'sign_up_step_three.dart';
+
+class ConfirmEmailPage extends HookConsumerWidget {
   const ConfirmEmailPage({super.key});
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final otp = useTextEditingController();
+
     return ScaffoldPagePaddingWidget(
       horizontal: 24,
       child: Scaffold(
-        appBar: AppBarWidget(
+        appBar: const AppBarWidget(
           title: '',
         ),
         body: SingleChildScrollView(
@@ -26,7 +30,7 @@ class ConfirmEmailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Text(
                   'Confirm your Email Address',
                   style: context.titleMedium?.copyWith(
@@ -60,25 +64,53 @@ class ConfirmEmailPage extends StatelessWidget {
                       height: 16.4 / 14),
                 ),
                 const SizedBox(height: 24),
-                TextField(),
+                TextField(
+                  controller: otp,
+                ),
                 const SizedBox(height: 12),
-                Text(
-                  'Resend Code',
-                  style: context.bodyMedium?.copyWith(
-                      //todo
-                      color: Color(0xff33F413),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
+                HookConsumer(
+                  builder:
+                      (BuildContext context, WidgetRef ref, Widget? child) {
+                    final loading = useState<bool>(false);
+                    return InkWell(
+                      onTap: () async {
+                        try {
+                          loading.value = true;
+                          await ref.read(sendEmailOtpProvider.future);
+                          context.showToast('Code sent');
+                        } catch (_) {
+                        } finally {
+                          loading.value = false;
+                        }
+                      },
+                      child: Text(
+                        switch (loading.value) {
+                          false => 'Resend Code',
+                          true => 'Resending...'
+                        },
+                        style: context.bodyMedium?.copyWith(
+                            color: const Color(0xff33F413),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 52),
-                TextActionRow(
-                  title: 'Email address is not correct? ',
-                  action: 'Edit',
-                ),
-                const SizedBox(height: 16),
+                // TextActionRow(
+                //   title: 'Email address is not correct? ',
+                //   action: 'Edit',
+                // ),
+                // const SizedBox(height: 16),
                 AppButton.elevatedButton(
                   onPressed: () {
-                    context.push(SignUpStepThree());
+                    final code = ref.read(emailOtpProvider.notifier).state;
+                    final inputCode = otp.text;
+                    if (code != inputCode) {
+                      context.showToast('Invalid code');
+                      return;
+                    }
+                    context.push(const SignUpStepThree());
                   },
                   label: 'Next',
                 )
