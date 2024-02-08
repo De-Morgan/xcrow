@@ -124,6 +124,7 @@ class SignUpStepThree extends HookConsumerWidget with InputValidatorMixin {
                           try {
                             loading.add(true);
                             await notifier.signUp(request);
+                            context.popToFirstScreen();
                           } catch (error) {
                             context.showError(error);
                           } finally {

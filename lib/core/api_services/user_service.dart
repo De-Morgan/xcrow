@@ -15,7 +15,7 @@ class UserService {
     try {
       final response = await network.post('$serviceName/register',
           body: signUpRequest.toJson());
-      return SignInResponse.fromJson(response.data);
+      return SignInResponse.fromJson(response.data['user']);
     } on ApiError {
       rethrow;
     }

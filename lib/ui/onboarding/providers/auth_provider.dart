@@ -30,6 +30,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     try {
       final signup = await userRepository.signup(request);
       state = Authenticated(user: signup);
+      final token = signup.token;
     } catch (_) {
       rethrow;
     }
