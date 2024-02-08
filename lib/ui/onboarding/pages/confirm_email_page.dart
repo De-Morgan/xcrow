@@ -110,7 +110,7 @@ class ConfirmEmailPage extends HookConsumerWidget {
                       context.showToast('Invalid code');
                       return;
                     }
-                    context.push(const SignUpStepThree());
+                    context.push(SignUpStepThree());
                   },
                   label: 'Next',
                 )

@@ -11,7 +11,7 @@ mixin InputValidatorMixin {
   bool isPasswordValid(String? password) {
     if (password?.trim().isEmpty ?? true) return false;
     return RegExp(
-            r"(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})")
+            r"(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{10,})")
         .hasMatch('$password');
   }
 

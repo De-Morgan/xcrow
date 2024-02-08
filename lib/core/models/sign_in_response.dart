@@ -41,10 +41,7 @@ class SignInResponse {
 }
 
 class SignUpRequest {
-  final int id;
-  final String avatar,
-      accountType,
-      phone,
+  final String phone,
       countryCode,
       phoneCode,
       language,
@@ -53,14 +50,11 @@ class SignUpRequest {
       gender,
       email,
       dateofbirth,
-      lastTransac,
-      walletBalance,
+      password,
       otp;
 
   SignUpRequest(
-      {required this.id,
-      required this.avatar,
-      required this.accountType,
+      {required this.password,
       required this.phone,
       required this.countryCode,
       required this.phoneCode,
@@ -70,15 +64,15 @@ class SignUpRequest {
       required this.gender,
       required this.email,
       required this.dateofbirth,
-      required this.lastTransac,
-      required this.walletBalance,
       required this.otp});
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id'] = id;
-    map['avatar'] = '';
-    map['accountType'] = accountType;
+    map['id'] = 0;
+    map['avatar'] = 'https://cdn-icons-png.flaticon.com/512/6596/6596121.png';
+    //map['lastTransac'] = lastTransac;
+    map['walletBalance'] = 0;
+    //map['accountType'] = '';
     map['phone'] = phone;
     map['countryCode'] = countryCode;
     map['phoneCode'] = phoneCode;
@@ -88,9 +82,9 @@ class SignUpRequest {
     map['gender'] = gender;
     map['email'] = email;
     map['dateofbirth'] = dateofbirth;
-    map['lastTransac'] = lastTransac;
-    map['walletBalance'] = walletBalance;
     map['otp'] = otp;
+    map['password'] = password;
+
     return map;
   }
 }

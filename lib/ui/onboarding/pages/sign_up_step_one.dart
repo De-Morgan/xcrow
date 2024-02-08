@@ -152,8 +152,18 @@ class _StepOneWidget extends ConsumerWidget with InputValidatorMixin {
                   }
                   try {
                     loading.add(true);
-                    await userRepo.phoneExist(phone: '${phone?.phoneNumber}');
-                    await userRepo.emailExist(email: email.text);
+                    final phoneExist = await userRepo.phoneExist(
+                        phone: '${phone?.phoneNumber}');
+                    if (phoneExist) {
+                      context.showToast('Phone number already exist');
+                      return;
+                    }
+                    final emailExist =
+                        await userRepo.emailExist(email: email.text);
+                    if (emailExist) {
+                      context.showToast('Email already exist');
+                      return;
+                    }
                     ref.read(_pageIndexProvider.notifier).state = 1;
                   } catch (error) {
                     context.showError(error);

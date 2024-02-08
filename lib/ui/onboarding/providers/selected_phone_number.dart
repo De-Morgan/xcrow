@@ -21,3 +21,5 @@ final usernameEmailProvider =
 
 final selectedGenderProvider = StateProvider<Gender?>((ref) => null);
 final emailOtpProvider = StateProvider<String>((ref) => '');
+
+final selectedDateProvider = StateProvider<DateTime?>((ref) => null);
