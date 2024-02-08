@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xcrow/ui/shared/close_keyboard_widget.dart';
 
 class PaddedContainer extends StatelessWidget {
   final double horizontalPadding;
@@ -19,12 +20,14 @@ class PaddedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        color: color,
-        padding: EdgeInsets.symmetric(
-            vertical: verticalPadding, horizontal: horizontalPadding),
-        alignment: alignment,
-        child: child,
+      child: CloseKeyboardWidget(
+        child: Container(
+          color: color,
+          padding: EdgeInsets.symmetric(
+              vertical: verticalPadding, horizontal: horizontalPadding),
+          alignment: alignment,
+          child: child,
+        ),
       ),
     );
   }

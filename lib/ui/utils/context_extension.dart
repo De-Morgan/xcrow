@@ -103,6 +103,7 @@ extension BuildContextExtension on BuildContext {
                 color: errorColor,
               ),
             ),
+            const SizedBox(width: 12),
             Expanded(
               child: Text(
                 error.toString(),

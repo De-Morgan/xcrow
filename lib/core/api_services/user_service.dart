@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xcrow/core/models/base_response.dart';
 import 'package:xcrow/core/models/sign_in_response.dart';
 import 'package:xcrow/core/models/type_sanitizer.dart';
 import 'package:xcrow/core/network/index.dart';
@@ -15,6 +16,21 @@ class UserService {
     try {
       final response = await network.post('$serviceName/register',
           body: signUpRequest.toJson());
+      return SignInResponse.fromJson(response.data['user']);
+    } on ApiError {
+      rethrow;
+    }
+  }
+
+  Future<SignInResponse> signIn(
+      {required String email, required String password}) async {
+    try {
+      final response = await network.post('$serviceName/login',
+          body: {'email': email, 'password': password});
+      final baseResponse = BaseResponse.fromJson(response.data);
+      if (baseResponse.status == false) {
+        throw baseResponse.message ?? ApiError.unknownError;
+      }
       return SignInResponse.fromJson(response.data['user']);
     } on ApiError {
       rethrow;

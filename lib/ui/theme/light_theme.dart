@@ -26,6 +26,8 @@ class LightTheme {
             horizontalTitleGap: 20,
             visualDensity: VisualDensity.compact,
           ),
+          textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(foregroundColor: _AppColors.k272626)),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.maxFinite, 57),

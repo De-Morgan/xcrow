@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/ui/home_page/pages/mother_page.dart';
-import 'package:xcrow/ui/onboarding/pages/sign_up_step_one.dart';
+import 'package:xcrow/ui/onboarding/pages/signin_page.dart';
 import 'package:xcrow/ui/onboarding/providers/auth_provider.dart';
 
 class MasterPage extends ConsumerWidget {
@@ -11,7 +11,7 @@ class MasterPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authProvider);
     return switch (authState) {
-      UnAuthenticated() => const SignUpStepOne(),
+      UnAuthenticated() => LoginPage(),
       Authenticated() => const MotherPage(),
     };
   }

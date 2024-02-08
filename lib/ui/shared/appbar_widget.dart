@@ -4,10 +4,12 @@ import 'package:xcrow/ui/home_page/widgets/button_nav_widget.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key, this.onBackPressed, required this.title});
+  const AppBarWidget(
+      {super.key, this.actions, this.onBackPressed, required this.title});
 
   final String title;
   final VoidCallback? onBackPressed;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       title: Text(title),
+      actions: actions,
     );
   }
 

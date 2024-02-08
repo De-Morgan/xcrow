@@ -17,6 +17,10 @@ class UserRepository {
 
   Future<bool> emailExist({required String email}) =>
       userService.emailExist(email: email);
+
+  Future<SignInResponse> signIn(
+          {required String email, required String password}) =>
+      userService.signIn(email: email, password: password);
 }
 
 final userRepositoryProvider = Provider<UserRepository>((ref) {

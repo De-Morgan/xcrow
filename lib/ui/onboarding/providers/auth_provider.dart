@@ -35,6 +35,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
       rethrow;
     }
   }
+
+  Future signIn({required String email, required String password}) async {
+    try {
+      final user =
+          await userRepository.signIn(email: email, password: password);
+      state = Authenticated(user: user);
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
