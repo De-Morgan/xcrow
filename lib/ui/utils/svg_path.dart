@@ -45,4 +45,6 @@ class SvgPath {
   static const copy = '${_root}copy.svg';
   static const google = '${_root}google.svg';
   static const apple = '${_root}apple.svg';
+  static const nigeriaFlag = '${_root}nigerian_flag.svg';
+  static const viewTransaction = '${_root}view_transaction.svg';
 }

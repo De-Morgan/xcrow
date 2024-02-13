@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
+import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/theme/theme.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
 import 'package:xcrow/ui/utils/svg_path.dart';
@@ -25,12 +26,15 @@ class HomePageAppBar extends ConsumerWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Hi, ${user.first_name} ${user.surname}',
-                  style: context.titleMedium,
+                  'HELLO, ${user.first_name}'.toUpperCase(),
+                  style: context.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontFamily: FontFamily.bold,
+                      fontSize: 12),
                 ),
                 Text(
                   '${user.email}',
-                  style: context.titleSmall,
+                  style: context.bodySmall,
                 ),
               ],
             ),

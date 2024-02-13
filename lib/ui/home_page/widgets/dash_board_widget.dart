@@ -24,15 +24,18 @@ class DashboardWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(
-                'View Wallet History',
-                style: context.titleMedium?.copyWith(fontSize: 13),
+              SvgWidget(
+                svgPath: SvgPath.nigeriaFlag,
               ),
-              const SizedBox(width: 10),
-              Icon(
-                Icons.arrow_forward_rounded,
-                color: context.primaryColor,
-              )
+              const SizedBox(width: 8),
+              Text(
+                'Naira account'.toUpperCase(),
+                style: context.titleSmall,
+              ),
+              Spacer(),
+              SvgWidget(
+                svgPath: SvgPath.viewTransaction,
+              ),
             ],
           ),
           Text(

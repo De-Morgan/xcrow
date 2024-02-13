@@ -59,6 +59,8 @@ class DarkTheme {
                   borderSide: const BorderSide(color: _AppColors.kFFCC00),
                   borderRadius: BorderRadius.circular(8))),
           textTheme: TextTheme(
+            bodySmall: _AppTextStyle.normal400Size14
+                .copyWith(color: _AppColors.k9B9898, fontSize: 10),
             bodyMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.gray01),
             titleMedium: _AppTextStyle.normal400Size14

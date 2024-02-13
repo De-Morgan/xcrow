@@ -16,6 +16,7 @@ extension BuildContextExtension on BuildContext {
   TextStyle? get titleMedium => textTheme.titleMedium;
   TextStyle? get titleSmall => textTheme.titleSmall;
   TextStyle? get bodyMedium => textTheme.bodyMedium;
+  TextStyle? get bodySmall => textTheme.bodySmall;
 
   ListTileThemeData get listTileThemeData => themeData.listTileTheme;
   InputDecorationTheme get inputDecorationTheme =>

@@ -59,6 +59,8 @@ class LightTheme {
                   borderSide: const BorderSide(color: _AppColors.k141313),
                   borderRadius: BorderRadius.circular(8))),
           textTheme: TextTheme(
+            bodySmall: _AppTextStyle.normal400Size14
+                .copyWith(color: _AppColors.k7C7979, fontSize: 10),
             bodyMedium: _AppTextStyle.normal400Size14
                 .copyWith(color: _AppColors.k141313),
             titleMedium: _AppTextStyle.normal400Size14
@@ -69,8 +71,8 @@ class LightTheme {
           ),
           extensions: const [
             HomeCircularTheme(
-              border: _AppColors.kFFCC00,
-              background: _AppColors.white,
+              border: _AppColors.kFAFAFA,
+              background: _AppColors.kFFCC00,
             ),
             DashboardTheme(
                 border: _AppColors.kF9F9FA, background: _AppColors.white),
