@@ -14,7 +14,7 @@ class DashboardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.customTheme<DashboardTheme>();
     return Container(
-      padding: const EdgeInsets.fromLTRB(22, 24, 24, 24),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           color: theme.background,
           borderRadius: BorderRadius.circular(16),
@@ -24,31 +24,45 @@ class DashboardWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              SvgWidget(
+              const SvgWidget(
                 svgPath: SvgPath.nigeriaFlag,
               ),
               const SizedBox(width: 8),
               Text(
                 'Naira account'.toUpperCase(),
-                style: context.titleSmall,
+                style: context.bodySmall,
               ),
-              Spacer(),
-              SvgWidget(
+              const Spacer(),
+              const SvgWidget(
                 svgPath: SvgPath.viewTransaction,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                'View Transaction'.toUpperCase(),
+                style: context.bodySmall?.copyWith(fontSize: 9),
               ),
             ],
           ),
-          Text(
-            'Balance at 21/11/23, 09:08 PM',
-            style: context.titleSmall,
-          ),
           const SizedBox(height: 8),
-          Text(
-            'N10.00',
-            style: context.bodyMedium?.copyWith(
-                fontSize: 45,
-                fontWeight: FontWeight.w300,
-                fontFamily: FontFamily.light),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                'N',
+                style: context.bodySmall?.copyWith(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w200,
+                    fontFamily: FontFamily.light),
+              ),
+              Text(
+                '10.83',
+                style: context.bodySmall?.copyWith(
+                    fontSize: 48,
+                    fontWeight: FontWeight.w200,
+                    fontFamily: FontFamily.light),
+              ),
+            ],
           ),
           const SizedBox(height: 8),
           Row(
