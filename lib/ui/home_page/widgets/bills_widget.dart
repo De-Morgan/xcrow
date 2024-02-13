@@ -56,23 +56,23 @@ class BillsWidget extends StatelessWidget {
             children: [
               _BilWidgetItem(
                 title: 'Electricity'.toUpperCase(),
-                svgPath: SvgPath.wifi,
+                svgPath: SvgPath.electricity,
               ),
               const _VerticalDivider(),
               _BilWidgetItem(
                 title: 'Betting'.toUpperCase(),
-                svgPath: SvgPath.call,
+                svgPath: SvgPath.betting,
                 onTap: () => context.push(const AirtimePage()),
               ),
               const _VerticalDivider(),
               _BilWidgetItem(
                 title: 'Cable TV'.toUpperCase(),
-                svgPath: SvgPath.exam,
+                svgPath: SvgPath.cableTv,
               ),
               const _VerticalDivider(),
               _BilWidgetItem(
                 title: 'virtual Card'.toUpperCase(),
-                svgPath: SvgPath.giftCard,
+                svgPath: SvgPath.virtualCard,
               ),
             ],
           ),

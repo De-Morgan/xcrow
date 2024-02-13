@@ -52,4 +52,8 @@ class SvgPath {
   static const addMoney = '${_root}add_money.svg';
   static const convert = '${_root}convert.svg';
   static const giftCard = '${_root}gift_card.svg';
+  static const betting = '${_root}betting.svg';
+  static const cableTv = '${_root}cable_tv.svg';
+  static const electricity = '${_root}electricity.svg';
+  static const virtualCard = '${_root}virtual_card.svg';
 }
