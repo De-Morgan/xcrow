@@ -36,7 +36,7 @@ class LightTheme {
               foregroundColor: _AppColors.k272626,
               backgroundColor: _AppColors.kFFCC00,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
+                  borderRadius: BorderRadius.circular(30)),
             ),
           ),
           bottomAppBarTheme: const BottomAppBarTheme(
