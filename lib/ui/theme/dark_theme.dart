@@ -75,11 +75,17 @@ class DarkTheme {
               background: _AppColors.kFFCC00,
             ),
             DashboardTheme(
-                border: _AppColors.k272626, background: _AppColors.k202126),
+                border: _AppColors.k202126, background: _AppColors.k202126),
             AppColors(
                 navBarColor: _AppColors.payBillDarkColor,
                 outlineColor: _AppColors.kA7A3A3,
-                amountBgColor: _AppColors.k312E2E),
-            AppAssetTheme(newYearSvg: SvgPath.darkNewYear)
+                amountBgColor: _AppColors.k312E2E,
+                dividerColor: _AppColors.k646464),
+            AppAssetTheme(newYearSvg: SvgPath.darkNewYear),
+            DashboardActionTheme(
+              border: _AppColors.k646464,
+              iconColor: _AppColors.kFFCC00,
+              background: _AppColors.k202126,
+            )
           ]);
 }

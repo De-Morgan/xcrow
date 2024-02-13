@@ -20,4 +20,7 @@ class _AppColors {
   static const k9B9898 = Color(0xff9B9898);
   static const k202126 = Color(0xff202126);
   static const k676666 = Color(0xff676666);
+  static const k5D5C5C = Color(0xff5D5C5C);
+  static const k646464 = Color(0xff646464);
+  static const kB7B3B3 = Color(0xffB7B3B3);
 }

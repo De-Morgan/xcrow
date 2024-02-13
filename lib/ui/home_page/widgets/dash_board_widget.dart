@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:xcrow/ui/home_page/pages/add_money_page.dart';
-import 'package:xcrow/ui/shared/button_container.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/theme/theme.dart';
@@ -64,34 +62,68 @@ class DashboardWidget extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ButtonContainer(
-                onPressed: () {
-                  context.push(const AddMoneyPage());
-                },
-                label: '+ Add Money',
-              ),
-              const Spacer(),
-              Row(
-                children: [
-                  const SvgWidget(
-                    svgPath: SvgPath.eyeSlash,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    'View Receipt',
-                    style: context.titleMedium
-                        ?.copyWith(fontSize: 10, fontWeight: FontWeight.w300),
-                  )
-                ],
-              )
+              ..._DashboardActionEnum.values.map((e) => _DashboardAction(
+                    dashboardAction: e,
+                  ))
             ],
           )
         ],
       ),
+    );
+  }
+}
+
+enum _DashboardActionEnum { add, send, convert }
+
+extension on _DashboardActionEnum {
+  String get title => switch (this) {
+        _DashboardActionEnum.add => 'ADD MONEY',
+        _DashboardActionEnum.send => 'SEND MONEY',
+        _DashboardActionEnum.convert => 'CONVERT',
+      };
+
+  String get svg => switch (this) {
+        _DashboardActionEnum.add => SvgPath.addMoney,
+        _DashboardActionEnum.send => SvgPath.arrowUp,
+        _DashboardActionEnum.convert => SvgPath.convert,
+      };
+}
+
+class _DashboardAction extends StatelessWidget {
+  const _DashboardAction({super.key, required this.dashboardAction});
+
+  final _DashboardActionEnum dashboardAction;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.customTheme<DashboardActionTheme>();
+    return Column(
+      children: [
+        Container(
+          width: 67,
+          height: 48,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: theme.background,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: theme.border)),
+          child: SvgWidget(
+            svgPath: dashboardAction.svg,
+            color: theme.iconColor,
+            height: 20,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          dashboardAction.title,
+          style: context.bodySmall?.copyWith(fontWeight: FontWeight.w500),
+        )
+      ],
     );
   }
 }

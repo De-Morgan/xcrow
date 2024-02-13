@@ -10,49 +10,74 @@ class BillsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
+    final theme = context.customTheme<DashboardTheme>();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              color: theme.background,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: theme.border, width: 10)),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _BilWidgetItem(
-                title: 'Airtime',
-                svgPath: SvgPath.call,
-                onTap: () => context.push(AirtimePage()),
-              ),
-              _BilWidgetItem(
-                title: 'Electricity',
-                svgPath: SvgPath.light,
-              ),
-              _BilWidgetItem(
-                title: 'Exam',
-                svgPath: SvgPath.exam,
-              ),
-            ],
-          ),
-          const SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _BilWidgetItem(
-                title: 'Data',
+                title: 'internet'.toUpperCase(),
                 svgPath: SvgPath.wifi,
               ),
+              const _VerticalDivider(),
               _BilWidgetItem(
-                title: 'Cable TV',
-                svgPath: SvgPath.tv,
+                title: 'Airtime'.toUpperCase(),
+                svgPath: SvgPath.call,
+                onTap: () => context.push(const AirtimePage()),
               ),
-              _BilWidgetItem(
-                title: 'See All',
-                svgPath: SvgPath.seeAll,
+              const _VerticalDivider(),
+              const _BilWidgetItem(
+                title: 'EXAM',
+                svgPath: SvgPath.exam,
+              ),
+              const _VerticalDivider(),
+              const _BilWidgetItem(
+                title: 'GIFT CARD',
+                svgPath: SvgPath.giftCard,
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 12),
+        Container(
+          decoration: BoxDecoration(
+              color: theme.background,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: theme.border, width: 10)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _BilWidgetItem(
+                title: 'Electricity'.toUpperCase(),
+                svgPath: SvgPath.wifi,
+              ),
+              const _VerticalDivider(),
+              _BilWidgetItem(
+                title: 'Betting'.toUpperCase(),
+                svgPath: SvgPath.call,
+                onTap: () => context.push(const AirtimePage()),
+              ),
+              const _VerticalDivider(),
+              _BilWidgetItem(
+                title: 'Cable TV'.toUpperCase(),
+                svgPath: SvgPath.exam,
+              ),
+              const _VerticalDivider(),
+              _BilWidgetItem(
+                title: 'virtual Card'.toUpperCase(),
+                svgPath: SvgPath.giftCard,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -72,35 +97,38 @@ class _BilWidgetItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.customTheme<DashboardTheme>();
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: 97,
-        height: 80,
-        alignment: Alignment.center,
-        // padding: const EdgeInsets.symmetric(vertical: 8),
-        decoration: BoxDecoration(
-            color: theme.background,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: theme.border, width: 10)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Spacer(),
-            SvgWidget(
-              svgPath: svgPath,
-              color: color,
-            ),
-            Spacer(),
-            Text(
-              title,
-              style: context.bodyMedium?.copyWith(color: color, fontSize: 11),
-            ),
-            Spacer(),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 16),
+          SvgWidget(
+            svgPath: svgPath,
+            color: color,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: context.bodyMedium?.copyWith(color: color, fontSize: 10),
+          ),
+          const SizedBox(height: 12),
+        ],
       ),
+    );
+  }
+}
+
+class _VerticalDivider extends StatelessWidget {
+  const _VerticalDivider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final appColor = context.customTheme<AppColors>();
+    return Container(
+      height: 40,
+      width: 1,
+      color: appColor.dividerColor,
     );
   }
 }

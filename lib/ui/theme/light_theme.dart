@@ -79,7 +79,13 @@ class LightTheme {
             AppColors(
                 navBarColor: _AppColors.payBillLightColor,
                 outlineColor: _AppColors.k797575,
-                amountBgColor: _AppColors.kF9F9FA),
-            AppAssetTheme(newYearSvg: SvgPath.lightNewYear)
+                amountBgColor: _AppColors.kF9F9FA,
+                dividerColor: _AppColors.kB7B3B3),
+            AppAssetTheme(newYearSvg: SvgPath.lightNewYear),
+            DashboardActionTheme(
+              border: _AppColors.kFFCC00,
+              iconColor: _AppColors.k5D5C5C,
+              background: _AppColors.kFFCC00,
+            )
           ]);
 }

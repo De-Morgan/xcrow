@@ -24,7 +24,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   UserRepository get userRepository => ref.read(userRepositoryProvider);
 
-  AuthNotifier(this.ref) : super(UnAuthenticated());
+  // AuthNotifier(this.ref) : super(UnAuthenticated());
+  //todo
+  AuthNotifier(this.ref)
+      : super(Authenticated(user: SignInResponse.fromJson({})));
 
   Future signUp(SignUpRequest request) async {
     try {

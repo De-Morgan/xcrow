@@ -47,4 +47,9 @@ class SvgPath {
   static const apple = '${_root}apple.svg';
   static const nigeriaFlag = '${_root}nigerian_flag.svg';
   static const viewTransaction = '${_root}view_transaction.svg';
+
+  static const arrowUp = '${_root}arrow_up.svg';
+  static const addMoney = '${_root}add_money.svg';
+  static const convert = '${_root}convert.svg';
+  static const giftCard = '${_root}gift_card.svg';
 }
