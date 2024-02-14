@@ -3,7 +3,7 @@ class SvgPath {
   static const bell = '${_root}bell.svg';
   static const eyeSlash = '${_root}eye-slash.svg';
   static const switchSvg = '${_root}switch.svg';
-
+  static const splashLogo = '${_root}splash_logo.svg';
   static const call = '${_root}call.svg';
   static const exam = '${_root}exam.svg';
   static const light = '${_root}light.svg';
