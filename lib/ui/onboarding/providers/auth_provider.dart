@@ -10,6 +10,8 @@ sealed class AuthState extends Equatable {
 
 class UnAuthenticated extends AuthState {}
 
+class OnboardingState extends AuthState {}
+
 class Authenticated extends AuthState {
   final SignInResponse user;
 
@@ -24,9 +26,20 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   UserRepository get userRepository => ref.read(userRepositoryProvider);
 
-  AuthNotifier(this.ref) : super(UnAuthenticated());
+  AuthNotifier(this.ref) : super(UnAuthenticated()) {
+    init();
+  }
+
   //todo delete
   //AuthNotifier(this.ref) : super(Authenticated(user: SignInResponse.fromJson({})));
+
+  void init() {
+    state = OnboardingState();
+  }
+
+  void onboardCompleted() {
+    state = UnAuthenticated();
+  }
 
   Future signUp(SignUpRequest request) async {
     try {

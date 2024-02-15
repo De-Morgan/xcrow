@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/ui/home_page/pages/mother_page.dart';
+import 'package:xcrow/ui/onboarding/pages/onboarding_pageview.dart';
 import 'package:xcrow/ui/onboarding/pages/signin_page.dart';
 import 'package:xcrow/ui/onboarding/providers/auth_provider.dart';
 
@@ -13,6 +14,7 @@ class MasterPage extends ConsumerWidget {
     return switch (authState) {
       UnAuthenticated() => LoginPage(),
       Authenticated() => const MotherPage(),
+      OnboardingState() => const OnboardingPageView(),
     };
   }
 }
