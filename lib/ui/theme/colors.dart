@@ -12,6 +12,7 @@ class _AppColors {
   static const gray02 = Color(0xff686868);
   static const kA7A3A3 = Color(0xffA7A3A3);
   static const kF9F9FA = Color(0xffF9F9FA);
+  static const k9F9F9D = Color(0xff9F9F9D);
   static const kFAFAFA = Color(0xffFAFAFA);
   static const k797575 = Color(0xff797575);
   static const k6B6A6A = Color(0xff6B6A6A);
@@ -23,4 +24,5 @@ class _AppColors {
   static const k5D5C5C = Color(0xff5D5C5C);
   static const k646464 = Color(0xff646464);
   static const kB7B3B3 = Color(0xffB7B3B3);
+  static const k211F1F = Color(0xff211F1F);
 }

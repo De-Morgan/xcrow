@@ -56,4 +56,10 @@ class SvgPath {
   static const cableTv = '${_root}cable_tv.svg';
   static const electricity = '${_root}electricity.svg';
   static const virtualCard = '${_root}virtual_card.svg';
+
+  static const account = '${_root}account.svg';
+  static const beneficiary = '${_root}beneficiary.svg';
+  static const security = '${_root}security.svg';
+  static const social = '${_root}social.svg';
+  static const identity = '${_root}identity.svg';
 }

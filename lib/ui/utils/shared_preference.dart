@@ -22,8 +22,8 @@ class SharedPreferenceService {
     } catch (_) {}
   }
 
-  Future<void> saveOnBoarded() async {
-    await _prefs.setBool(_ONBOARDKEY, true);
+  Future<void> saveOnBoarded({bool boarded = true}) async {
+    await _prefs.setBool(_ONBOARDKEY, boarded);
   }
 
   bool get onBoarded {
@@ -48,7 +48,9 @@ class SharedPreferenceService {
   }
 
   Future<void> clearData() async {
+    final boarded = onBoarded;
     await _prefs.clear();
+    saveOnBoarded(boarded: boarded);
   }
 }
 

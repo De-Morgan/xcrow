@@ -86,6 +86,10 @@ class DarkTheme {
               border: _AppColors.k646464,
               iconColor: _AppColors.kFFCC00,
               background: _AppColors.k202126,
-            )
+            ),
+            AccountActionTheme(
+                textColor: _AppColors.k9F9F9D,
+                background: _AppColors.k211F1F,
+                trailingIconColor: _AppColors.kFFCC00)
           ]);
 }

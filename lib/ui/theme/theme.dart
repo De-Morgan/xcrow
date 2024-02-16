@@ -6,6 +6,7 @@ import 'package:xcrow/ui/utils/svg_path.dart';
 
 part 'colors.dart';
 part 'dark_theme.dart';
+part 'extension/account_action_theme.dart';
 part 'extension/app_asset_theme.dart';
 part 'extension/appcolors_theme.dart';
 part 'extension/dashboard_action_theme.dart';

@@ -34,9 +34,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
     init();
   }
 
-  //todo delete
-  //AuthNotifier(this.ref) : super(Authenticated(user: SignInResponse.fromJson({})));
-
   void init() {
     final onboarded = sharedPreference.onBoarded;
     switch (onboarded) {
@@ -82,6 +79,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } catch (_) {
       rethrow;
     }
+  }
+
+  void logOut() {
+    sharedPreference.clearData();
+    state = UnAuthenticated();
   }
 }
 

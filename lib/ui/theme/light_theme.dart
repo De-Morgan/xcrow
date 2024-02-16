@@ -86,6 +86,10 @@ class LightTheme {
               border: _AppColors.kFFCC00,
               iconColor: _AppColors.k5D5C5C,
               background: _AppColors.kFFCC00,
-            )
+            ),
+            AccountActionTheme(
+                textColor: _AppColors.k7C7979,
+                background: _AppColors.kFAFAFA,
+                trailingIconColor: _AppColors.k7C7979)
           ]);
 }

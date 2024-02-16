@@ -19,6 +19,8 @@ class SignInResponse {
       token,
       transactionPin;
 
+  String get fullName => '$first_name $surname';
+
   SignInResponse.fromJson(dynamic json) {
     id = TypeSanitizer.sanitizeToInt(json['id']);
     avatar = TypeSanitizer.sanitizeToString(json['avatar']);
