@@ -41,7 +41,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     final onboarded = sharedPreference.onBoarded;
     switch (onboarded) {
       case true:
-        checkLogin();
+        _checkLogin();
         break;
       case false:
         state = OnboardingState();
@@ -54,7 +54,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = UnAuthenticated();
   }
 
-  void checkLogin() {
+  void _checkLogin() {
     final customer = sharedPreference.customer;
     if (customer != null) {
       state = Authenticated(user: customer);
