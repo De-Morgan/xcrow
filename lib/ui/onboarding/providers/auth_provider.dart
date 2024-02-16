@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/core/models/sign_in_response.dart';
 import 'package:xcrow/core/repository/user_repository.dart';
+import 'package:xcrow/ui/utils/shared_preference.dart';
 
 sealed class AuthState extends Equatable {
   @override
@@ -26,6 +27,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   UserRepository get userRepository => ref.read(userRepositoryProvider);
 
+  SharedPreferenceService get sharedPreference =>
+      ref.read(sharePreferenceProvider);
+
   AuthNotifier(this.ref) : super(UnAuthenticated()) {
     init();
   }
@@ -34,11 +38,29 @@ class AuthNotifier extends StateNotifier<AuthState> {
   //AuthNotifier(this.ref) : super(Authenticated(user: SignInResponse.fromJson({})));
 
   void init() {
-    state = OnboardingState();
+    final onboarded = sharedPreference.onBoarded;
+    switch (onboarded) {
+      case true:
+        checkLogin();
+        break;
+      case false:
+        state = OnboardingState();
+        break;
+    }
   }
 
   void onboardCompleted() {
+    sharedPreference.saveOnBoarded();
     state = UnAuthenticated();
+  }
+
+  void checkLogin() {
+    final customer = sharedPreference.customer;
+    if (customer != null) {
+      state = Authenticated(user: customer);
+    } else {
+      state = UnAuthenticated();
+    }
   }
 
   Future signUp(SignUpRequest request) async {
@@ -56,6 +78,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       final user =
           await userRepository.signIn(email: email, password: password);
       state = Authenticated(user: user);
+      sharedPreference.saveCustomer(user);
     } catch (_) {
       rethrow;
     }

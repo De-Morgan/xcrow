@@ -38,6 +38,17 @@ class SignInResponse {
     token = TypeSanitizer.sanitizeToString(json['token']);
     transactionPin = TypeSanitizer.sanitizeToString(json['transactionPin']);
   }
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['avatar'] = avatar;
+    map['phone'] = phone;
+    map['first_name'] = first_name;
+    map['surname'] = surname;
+    map['gender'] = gender;
+    map['email'] = email;
+    return map;
+  }
 }
 
 class SignUpRequest {
