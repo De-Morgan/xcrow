@@ -5,15 +5,21 @@ import 'package:xcrow/ui/utils/context_extension.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget(
-      {super.key, this.actions, this.onBackPressed, required this.title});
+      {super.key,
+      this.actions,
+      this.centerTitle,
+      this.onBackPressed,
+      required this.title});
 
   final String title;
   final VoidCallback? onBackPressed;
   final List<Widget>? actions;
+  final bool? centerTitle;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: centerTitle,
       titleSpacing: 2,
       leading: Center(
         child: GestureDetector(
@@ -50,15 +56,16 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class TopAppBarWidget extends ConsumerWidget implements PreferredSizeWidget {
-  const TopAppBarWidget({super.key, required this.title});
+  const TopAppBarWidget({super.key, this.centerTitle, required this.title});
 
   final String title;
-
+  final bool? centerTitle;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pageNotifier = ref.watch(pageIndexProvider.notifier);
     return AppBarWidget(
       title: title,
+      centerTitle: centerTitle,
       onBackPressed: () => pageNotifier.state = 0,
     );
   }

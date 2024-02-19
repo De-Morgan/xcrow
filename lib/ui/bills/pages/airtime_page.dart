@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xcrow/ui/bills/pages/transaction_page.dart';
 import 'package:xcrow/ui/bills/provider/airtime.dart';
 import 'package:xcrow/ui/bills/widgets/airtime_amount_widget.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
@@ -19,7 +20,7 @@ class AirtimePage extends ConsumerWidget {
     return ScaffoldPagePaddingWidget(
       horizontal: 24,
       child: Scaffold(
-        appBar: AppBarWidget(
+        appBar: const AppBarWidget(
           title: 'Airtime',
         ),
         body: SingleChildScrollView(
@@ -28,8 +29,8 @@ class AirtimePage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 24),
-                AppInputField(
+                const SizedBox(height: 24),
+                const AppInputField(
                   title: 'Choose an amount',
                   child: AirtimeAmountWidget(),
                 ),
@@ -39,7 +40,7 @@ class AirtimePage extends ConsumerWidget {
                     children: [
                       Text('Amount',
                           style: context.titleMedium?.copyWith(fontSize: 13)),
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         'Balance” 6,780.93',
                         style: context.titleSmall?.copyWith(
@@ -49,11 +50,11 @@ class AirtimePage extends ConsumerWidget {
                   ),
                   child: TextField(
                     controller: airtimeController,
-                    decoration: InputDecoration(hintText: 'N 0.00'),
+                    decoration: const InputDecoration(hintText: 'N 0.00'),
                   ),
                 ),
                 const SizedBox(height: 18),
-                AppInputField(
+                const AppInputField(
                   title: 'Network',
                   child: TextField(
                     decoration: InputDecoration(hintText: 'Choose Network'),
@@ -65,7 +66,7 @@ class AirtimePage extends ConsumerWidget {
                     children: [
                       Text('Phone Number',
                           style: context.titleMedium?.copyWith(fontSize: 13)),
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         'Choose contact',
                         style: context.titleSmall?.copyWith(
@@ -75,13 +76,15 @@ class AirtimePage extends ConsumerWidget {
                       )
                     ],
                   ),
-                  child: TextField(
+                  child: const TextField(
                     decoration: InputDecoration(hintText: '09031193287'),
                   ),
                 ),
                 const SizedBox(height: 40),
                 AppButton.elevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(const TransactionPage());
+                  },
                   label: 'Next',
                 )
               ],

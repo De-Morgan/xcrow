@@ -14,7 +14,7 @@ class PaddedContainer extends StatelessWidget {
       this.verticalPadding = 0,
       required this.child,
       this.color,
-      this.alignment = Alignment.topRight})
+      this.alignment = Alignment.topLeft})
       : super(key: key);
 
   @override

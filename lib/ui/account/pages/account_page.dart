@@ -6,6 +6,8 @@ import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
 import 'package:xcrow/ui/shared/app_bar_circle.dart';
 import 'package:xcrow/ui/shared/app_button.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
+import 'package:xcrow/ui/theme/theme.dart';
+import 'package:xcrow/ui/utils/context_extension.dart';
 import 'package:xcrow/ui/utils/svg_path.dart';
 
 class AccountPage extends StatelessWidget {
@@ -13,9 +15,11 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors = context.customTheme<AppColors>();
     return ScaffoldPagePaddingWidget(
       child: Scaffold(
         appBar: const TopAppBarWidget(
+          centerTitle: true,
           title: 'Account',
         ),
         body: Center(
@@ -31,7 +35,10 @@ class AccountPage extends StatelessWidget {
                         size: 60,
                       ),
                       const SizedBox(height: 12),
-                      Text('Tier 1 Upgrade Account'.toUpperCase()),
+                      Text(
+                        'Tier 1 Upgrade Account'.toUpperCase(),
+                        style: TextStyle(color: appColors.navBarColor),
+                      ),
                       const SizedBox(height: 12),
                       const UsernameWidget(),
                       const SizedBox(height: 14),

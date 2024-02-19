@@ -8,24 +8,25 @@ class ButtonContainer extends StatelessWidget {
       this.child,
       this.label = '',
       this.borderRadius = 8,
+      this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       required this.onPressed});
 
   final Widget? child;
   final String label;
   final VoidCallback onPressed;
   final double borderRadius;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        alignment: Alignment.center,
         decoration: BoxDecoration(
           color: context.primaryColor,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        padding: padding,
         child: child ??
             Text(
               label,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xcrow/ui/home_page/pages/add_money_page.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/theme/theme.dart';
@@ -69,6 +70,14 @@ class DashboardWidget extends StatelessWidget {
             children: [
               ..._DashboardActionEnum.values.map((e) => _DashboardAction(
                     dashboardAction: e,
+                    onTap: () {
+                      switch (e) {
+                        case _DashboardActionEnum.add:
+                          context.push(const AddMoneyPage());
+                        case _DashboardActionEnum.send:
+                        case _DashboardActionEnum.convert:
+                      }
+                    },
                   ))
             ],
           )
@@ -95,27 +104,32 @@ extension on _DashboardActionEnum {
 }
 
 class _DashboardAction extends StatelessWidget {
-  const _DashboardAction({super.key, required this.dashboardAction});
+  const _DashboardAction(
+      {super.key, this.onTap, required this.dashboardAction});
 
   final _DashboardActionEnum dashboardAction;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.customTheme<DashboardActionTheme>();
     return Column(
       children: [
-        Container(
-          width: 67,
-          height: 48,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: theme.background,
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: theme.border)),
-          child: SvgWidget(
-            svgPath: dashboardAction.svg,
-            color: theme.iconColor,
-            height: 20,
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            width: 67,
+            height: 48,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: theme.background,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: theme.border)),
+            child: SvgWidget(
+              svgPath: dashboardAction.svg,
+              color: theme.iconColor,
+              height: 20,
+            ),
           ),
         ),
         const SizedBox(height: 8),

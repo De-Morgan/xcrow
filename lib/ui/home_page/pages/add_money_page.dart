@@ -17,30 +17,30 @@ class AddMoneyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldPagePaddingWidget(
       child: Scaffold(
-        appBar: AppBarWidget(
+        appBar: const AppBarWidget(
           title: 'Add Money',
         ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               AppListTile(
                 leadingSvg: SvgPath.bank,
                 title: 'Bank Transfer',
                 subtitle: 'Add money via mobile or internet banking',
-                trailing: Icon(Icons.keyboard_arrow_right_rounded),
-                onTap: () => context.push(BankTransferPage()),
+                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                onTap: () => context.push(const BankTransferPage()),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16, bottom: 10),
                 child: Divider(),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 50.0),
                 child: AccountNumberWidget(),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16, top: 10),
                 child: Divider(),
               ),
@@ -48,10 +48,10 @@ class AddMoneyPage extends StatelessWidget {
                 leadingSvg: SvgPath.cashDeposit,
                 title: 'Cash Deposit',
                 subtitle: 'Fund your account with nearby merchants',
-                trailing: Icon(Icons.keyboard_arrow_right_rounded),
-                onTap: () => context.push(YourNgnAccountPage()),
+                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                onTap: () => context.push(const YourNgnAccountPage()),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16, top: 10),
                 child: Divider(),
               ),
@@ -59,24 +59,24 @@ class AddMoneyPage extends StatelessWidget {
                 leadingSvg: SvgPath.card,
                 title: 'Top-up with Card/Account',
                 subtitle: 'Add money directly from your bank card or account',
-                trailing: Icon(Icons.keyboard_arrow_right_rounded),
-                onTap: () => context.push(AddByCardPage()),
+                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                onTap: () => context.push(const AddByCardPage()),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16, top: 10),
                 child: Divider(),
               ),
-              AppListTile(
+              const AppListTile(
                 leadingSvg: SvgPath.ussd,
                 title: 'Bank USSD',
                 subtitle: 'with other banks USSD CODE',
                 trailing: Icon(Icons.keyboard_arrow_right_rounded),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16, top: 10),
                 child: Divider(),
               ),
-              AppListTile(
+              const AppListTile(
                 leading: SizedBox(
                   width: 20,
                 ),
@@ -84,9 +84,8 @@ class AddMoneyPage extends StatelessWidget {
                 subtitle: 'Send a request to any Paytal user',
                 trailing: Icon(Icons.keyboard_arrow_right_rounded),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 24),
                 child: NewYearWidget(),
               ),
             ],
