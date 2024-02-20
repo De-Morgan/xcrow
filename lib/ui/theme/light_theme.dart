@@ -4,13 +4,13 @@ class LightTheme {
   static ThemeData get theme => ThemeData(
           useMaterial3: true,
           brightness: Brightness.light,
-          scaffoldBackgroundColor: _AppColors.white,
+          scaffoldBackgroundColor: _AppColors.kFFFFFF,
           primaryColor: _AppColors.kFFCC00,
           appBarTheme: AppBarTheme(
               elevation: 0,
               centerTitle: false,
               iconTheme: const IconThemeData(color: _AppColors.k272626),
-              backgroundColor: _AppColors.white,
+              backgroundColor: _AppColors.kFFFFFF,
               titleTextStyle: _AppTextStyle.normal400Size14.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w300,
@@ -40,7 +40,7 @@ class LightTheme {
             ),
           ),
           bottomAppBarTheme: const BottomAppBarTheme(
-              color: _AppColors.white, surfaceTintColor: _AppColors.white),
+              color: _AppColors.kFFFFFF, surfaceTintColor: _AppColors.kFFFFFF),
           inputDecorationTheme: InputDecorationTheme(
               constraints: const BoxConstraints(
                 minHeight: 57,
@@ -75,9 +75,9 @@ class LightTheme {
               background: _AppColors.kFFCC00,
             ),
             DashboardTheme(
-                border: _AppColors.kF9F9FA, background: _AppColors.white),
+                border: _AppColors.kF9F9FA, background: _AppColors.kFFFFFF),
             AppColors(
-                navBarColor: _AppColors.payBillLightColor,
+                navBarColor: _AppColors.kFF6600,
                 outlineColor: _AppColors.k797575,
                 amountBgColor: _AppColors.kF9F9FA,
                 dividerColor: _AppColors.kB7B3B3),

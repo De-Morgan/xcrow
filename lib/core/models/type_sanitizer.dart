@@ -4,7 +4,7 @@ class TypeSanitizer {
   }
 
   static int? sanitizeToInt(Object? value) {
-    return int.tryParse(value?.toString() ?? '');
+    return sanitizeToNum(value)?.toInt();
   }
 
   static num? sanitizeToNum(Object? value) {

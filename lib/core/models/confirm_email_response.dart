@@ -1,4 +1,4 @@
-import 'type_sanitizer.dart';
+import 'package:xcrow/core/models/type_sanitizer.dart';
 
 class ConfirmEmailResponse {
   final bool status;

@@ -1,8 +1,8 @@
 part of network;
 
 class NetworkProvider {
-  static const CONNECT_TIME_OUT = Duration(seconds: 30);
-  static const RECEIVE_TIME_OUT = Duration(seconds: 40);
+  static const connectionTimeOut = Duration(seconds: 30);
+  static const receiveTimeOut = Duration(seconds: 40);
   final Dio _dio;
 
   NetworkProvider({Dio? dio})
@@ -35,23 +35,23 @@ class NetworkProvider {
   factory NetworkProvider.fromBaseUrl(String baseUrl) => NetworkProvider(
           dio: Dio(BaseOptions(
         baseUrl: baseUrl,
-        connectTimeout: CONNECT_TIME_OUT,
-        receiveTimeout: RECEIVE_TIME_OUT,
+        connectTimeout: connectionTimeOut,
+        receiveTimeout: receiveTimeOut,
       )));
 
   factory NetworkProvider.fromBaseUrlNoInterceptor(String baseUrl) =>
       NetworkProvider._internal(
           dio: Dio(BaseOptions(
         baseUrl: baseUrl,
-        connectTimeout: CONNECT_TIME_OUT,
-        receiveTimeout: RECEIVE_TIME_OUT,
+        connectTimeout: connectionTimeOut,
+        receiveTimeout: receiveTimeOut,
       )));
 
   static BaseOptions get _defaultOpts {
     return BaseOptions(
       baseUrl: EnvironmentConfig.baseUrl,
-      connectTimeout: CONNECT_TIME_OUT,
-      receiveTimeout: RECEIVE_TIME_OUT,
+      connectTimeout: connectionTimeOut,
+      receiveTimeout: receiveTimeOut,
     );
   }
 

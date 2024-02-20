@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xcrow/ui/home_page/widgets/bills_widget.dart';
-import 'package:xcrow/ui/home_page/widgets/dash_board_widget.dart';
+import 'package:xcrow/ui/home_page/widgets/dashboard_widget.dart';
 import 'package:xcrow/ui/home_page/widgets/home_page_appbar.dart';
 import 'package:xcrow/ui/home_page/widgets/new_year_widget.dart';
 import 'package:xcrow/ui/home_page/widgets/paybill_switch_widget.dart';

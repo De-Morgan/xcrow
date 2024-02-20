@@ -4,10 +4,8 @@ import 'package:xcrow/core/network/index.dart';
 
 class EmailService {
   final Ref ref;
-
   NetworkProvider get network => ref.read(networkProvider);
   static const serviceName = 'email';
-
   EmailService({required this.ref});
 
   Future<ConfirmEmailResponse> emailOtp(

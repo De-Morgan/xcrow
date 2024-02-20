@@ -77,7 +77,7 @@ class DarkTheme {
             DashboardTheme(
                 border: _AppColors.k202126, background: _AppColors.k202126),
             AppColors(
-                navBarColor: _AppColors.payBillDarkColor,
+                navBarColor: _AppColors.kFF9900,
                 outlineColor: _AppColors.kA7A3A3,
                 amountBgColor: _AppColors.k312E2E,
                 dividerColor: _AppColors.k646464),

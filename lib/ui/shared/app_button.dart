@@ -56,7 +56,7 @@ class AppButton extends StatelessWidget {
         loading: loading,
         icon: icon,
         key: key,
-        buttonType: ButtonType.raised_icon,
+        buttonType: ButtonType.raisedIcon,
         enableButtonNotifier: enable,
       );
 
@@ -129,7 +129,7 @@ class AppButton extends StatelessWidget {
                   ));
             });
         break;
-      case ButtonType.raised_icon:
+      case ButtonType.raisedIcon:
         widget = ValueListenableBuilder<bool>(
           valueListenable: _enableButtonNotifier,
           builder: (BuildContext context, bool value, Widget? child) {
@@ -163,6 +163,6 @@ class AppButton extends StatelessWidget {
 
 enum ButtonType {
   raised,
-  raised_icon,
+  raisedIcon,
   text,
 }
