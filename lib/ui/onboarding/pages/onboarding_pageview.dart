@@ -131,13 +131,13 @@ class _OnboardingPage extends StatelessWidget {
   static const bigStyle = TextStyle(
       color: Color(0xff000000),
       fontFamily: FontFamily.light,
-      fontSize: 45,
-      height: 50 / 45,
+      fontSize: 38,
+      height: 44 / 38,
       fontWeight: FontWeight.w200);
   static const smallStyle = TextStyle(
       color: Color(0xff000000),
       fontFamily: FontFamily.light,
-      fontSize: 18,
+      fontSize: 16,
       fontWeight: FontWeight.w200);
 
   @override
@@ -152,22 +152,31 @@ class _OnboardingPage extends StatelessWidget {
                   ),
                   fit: BoxFit.cover)),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          //mainAxisSize: MainAxisSize.min,
+        Row(
           children: [
-            Text(
-              title,
-              style: bigStyle,
-              textAlign: TextAlign.center,
+            const Spacer(),
+            Expanded(
+              flex: 8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                //mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: bigStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    description,
+                    textAlign: TextAlign.center,
+                    style: smallStyle,
+                  ),
+                  const SizedBox(height: 80),
+                ],
+              ),
             ),
-            const SizedBox(height: 16),
-            Text(
-              description,
-              textAlign: TextAlign.center,
-              style: smallStyle,
-            ),
-            const SizedBox(height: 80),
+            const Spacer(),
           ],
         )
       ],
