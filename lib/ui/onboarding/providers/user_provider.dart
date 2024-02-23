@@ -6,3 +6,8 @@ final userProvider = Provider<SignInResponse>((ref) {
   final auth = ref.watch(authProvider) as Authenticated;
   return auth.user;
 });
+
+final userIdProvider = Provider<int>((ref) {
+  final user = ref.watch(userProvider);
+  return user.id ?? -1;
+});

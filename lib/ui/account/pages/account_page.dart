@@ -43,7 +43,7 @@ class AccountPage extends StatelessWidget {
                       const UsernameWidget(),
                       const SizedBox(height: 14),
                       AppButton.elevatedButton(
-                        label: 'Edit button',
+                        label: 'Edit Profile',
                         onPressed: () {},
                       ),
                       const SizedBox(height: 24),

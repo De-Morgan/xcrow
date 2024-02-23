@@ -52,6 +52,8 @@ class SvgPath {
   static const addMoney = '${_root}add_money.svg';
   static const convert = '${_root}convert.svg';
   static const giftCard = '${_root}gift_card.svg';
+  static const escrow = '${_root}escrow.svg';
+
   static const betting = '${_root}betting.svg';
   static const cableTv = '${_root}cable_tv.svg';
   static const electricity = '${_root}electricity.svg';
@@ -62,4 +64,7 @@ class SvgPath {
   static const security = '${_root}security.svg';
   static const social = '${_root}social.svg';
   static const identity = '${_root}identity.svg';
+
+  static const search = '${_root}search.svg';
+  static const calendar = '${_root}calendar.svg';
 }

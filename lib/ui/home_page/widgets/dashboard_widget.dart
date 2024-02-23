@@ -6,6 +6,8 @@ import 'package:xcrow/ui/theme/theme.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
 import 'package:xcrow/ui/utils/svg_path.dart';
 
+import '../pages/transaction_history_page.dart';
+
 class DashboardWidget extends StatelessWidget {
   const DashboardWidget({super.key});
 
@@ -36,9 +38,12 @@ class DashboardWidget extends StatelessWidget {
                 svgPath: SvgPath.viewTransaction,
               ),
               const SizedBox(width: 4),
-              Text(
-                'View Transaction'.toUpperCase(),
-                style: context.bodySmall?.copyWith(fontSize: 9),
+              GestureDetector(
+                onTap: () => context.push(const TransactionHistoryPage()),
+                child: Text(
+                  'View Transaction'.toUpperCase(),
+                  style: context.bodySmall?.copyWith(fontSize: 9),
+                ),
               ),
             ],
           ),

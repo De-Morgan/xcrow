@@ -39,8 +39,8 @@ class BillsWidget extends StatelessWidget {
               ),
               const _VerticalDivider(),
               const _BilWidgetItem(
-                title: 'GIFT CARD',
-                svgPath: SvgPath.giftCard,
+                title: 'ESCROW',
+                svgPath: SvgPath.escrow,
               ),
             ],
           ),

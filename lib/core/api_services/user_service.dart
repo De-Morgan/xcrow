@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xcrow/core/models/account_info.dart';
 import 'package:xcrow/core/models/base_response.dart';
 import 'package:xcrow/core/models/sign_in_response.dart';
 import 'package:xcrow/core/models/type_sanitizer.dart';
@@ -52,6 +53,37 @@ class UserService {
       final response = await network
           .post('$serviceName/email/check', body: {'email': email});
       return TypeSanitizer.sanitizeToBool(response.data['mailExist']) ?? false;
+    } on ApiError {
+      rethrow;
+    }
+  }
+
+  Future<AccountInfo> getUserAccountInfo({required int userId}) async {
+    try {
+      final response = await network.post('$serviceName/get/account');
+      return AccountInfo.fromJson(response.data);
+    } on ApiError {
+      rethrow;
+    }
+  }
+
+  Future<bool> checkTransactionPin(
+      {required int userId, required String pin}) async {
+    try {
+      final response = await network.post('$serviceName/check/transaction/pin',
+          body: {'id': userId, 'pin': pin});
+      return TypeSanitizer.sanitizeToBool(response.data['status']) ?? false;
+    } on ApiError {
+      rethrow;
+    }
+  }
+
+  Future<bool> setTransactionPin(
+      {required int userId, required String email, required String pin}) async {
+    try {
+      final response = await network.post('$serviceName/set/transaction/pin',
+          body: {'id': userId, 'pin': pin, 'email': email});
+      return TypeSanitizer.sanitizeToBool(response.data['status']) ?? false;
     } on ApiError {
       rethrow;
     }
