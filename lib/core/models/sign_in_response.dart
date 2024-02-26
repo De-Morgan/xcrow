@@ -61,6 +61,7 @@ class SignInResponse {
     map['surname'] = surname;
     map['gender'] = gender;
     map['email'] = email;
+    map['transactionPin'] = transactionPin;
     return map;
   }
 }

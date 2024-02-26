@@ -78,8 +78,8 @@ class _HistoryTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Text('-N20,000.00')
+                  const Spacer(),
+                  const Text('-N20,000.00')
                 ],
               ),
             )
