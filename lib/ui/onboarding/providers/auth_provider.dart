@@ -76,6 +76,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
           await userRepository.signIn(email: email, password: password);
       state = Authenticated(user: user);
       sharedPreference.saveCustomer(user);
+      sharedPreference.accessToken = user.token;
     } catch (_) {
       rethrow;
     }

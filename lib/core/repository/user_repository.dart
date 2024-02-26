@@ -3,13 +3,19 @@ import 'package:xcrow/core/api_services/user_service.dart';
 import 'package:xcrow/core/models/account_info.dart';
 import 'package:xcrow/core/models/sign_in_response.dart';
 import 'package:xcrow/ui/onboarding/providers/user_provider.dart';
+import 'package:xcrow/ui/utils/shared_preference.dart';
 
 class UserRepository {
   final Ref ref;
 
   UserService get userService => ref.read(userServiceProvider);
 
+  SharedPreferenceService get sharedPreference =>
+      ref.read(sharePreferenceProvider);
+
   int get userId => ref.read(userIdProvider);
+
+  SignInResponse get user => ref.read(userProvider);
 
   UserRepository({required this.ref});
 
@@ -32,9 +38,12 @@ class UserRepository {
   Future<bool> checkTransactionPin({required String pin}) =>
       userService.checkTransactionPin(userId: userId, pin: pin);
 
-  Future<bool> setTransactionPin(
-          {required int userId, required String email, required String pin}) =>
-      userService.setTransactionPin(pin: pin, userId: userId, email: email);
+  Future<bool> setTransactionPin({required String pin}) async {
+    final result = await userService.setTransactionPin(
+        pin: pin, userId: userId, email: '${user.email}');
+    sharedPreference.saveCustomer(user.copyWith(transactionPin: pin));
+    return result;
+  }
 }
 
 final userRepositoryProvider = Provider<UserRepository>((ref) {

@@ -8,7 +8,7 @@ import 'package:xcrow/core/network/index.dart';
 class UserService {
   final Ref ref;
 
-  NetworkProvider get network => ref.read(noInterceptorNetworkProvider);
+  NetworkProvider get network => ref.read(networkProvider);
   static const serviceName = 'user';
 
   UserService({required this.ref});

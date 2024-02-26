@@ -64,6 +64,7 @@ class SvgPath {
   static const security = '${_root}security.svg';
   static const social = '${_root}social.svg';
   static const identity = '${_root}identity.svg';
+  static const check = '${_root}check.svg';
 
   static const search = '${_root}search.svg';
   static const calendar = '${_root}calendar.svg';

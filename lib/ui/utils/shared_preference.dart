@@ -15,11 +15,19 @@ class SharedPreferenceService {
   static const _dbVersion = '0';
   static const _ONBOARDKEY = 'onboard$_dbVersion';
   static const _CUSTOMERKEY = 'customer$_dbVersion';
+  static const _accessTokenKEY = 'accessToken$_dbVersion';
 
   Future<void> init() async {
     try {
       _prefs = await SharedPreferences.getInstance();
     } catch (_) {}
+  }
+
+  String get accessToken => _prefs.getString(_accessTokenKEY) ?? '';
+
+  set accessToken(String? accessToken) {
+    if (accessToken == null) return;
+    _prefs.setString(_accessTokenKEY, accessToken);
   }
 
   Future<void> saveOnBoarded({bool boarded = true}) async {

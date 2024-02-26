@@ -1,4 +1,4 @@
-import 'type_sanitizer.dart';
+import 'package:xcrow/core/models/type_sanitizer.dart';
 
 class SignInResponse {
   int? id;
@@ -33,6 +33,20 @@ class SignInResponse {
       this.avatar,
       this.id});
 
+  SignInResponse copyWith({String? transactionPin}) {
+    return SignInResponse(
+        transactionPin: transactionPin ?? this.transactionPin,
+        email: email,
+        id: id,
+        gender: gender,
+        phone: phone,
+        avatar: avatar,
+        first_name: first_name,
+        phone_code: phone_code,
+        surname: surname,
+        token: token);
+  }
+
   SignInResponse.fromJson(dynamic json) {
     id = TypeSanitizer.sanitizeToInt(json['id']);
     avatar = TypeSanitizer.sanitizeToString(json['avatar']);
@@ -61,6 +75,7 @@ class SignInResponse {
     map['surname'] = surname;
     map['gender'] = gender;
     map['email'] = email;
+    map['id'] = id;
     map['transactionPin'] = transactionPin;
     return map;
   }

@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/env_config.dart';
+import 'package:xcrow/ui/utils/shared_preference.dart';
 
 part 'api_error.dart';
 part 'app_interceptor.dart';

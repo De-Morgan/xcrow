@@ -4,6 +4,11 @@ class _AppInterceptor extends Interceptor {
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
+    if (SharedPreferenceService().accessToken.isNotEmpty) {
+      final accessToken = SharedPreferenceService().accessToken;
+      options.headers.addAll({'Authorization': 'Bearer $accessToken'});
+      return super.onRequest(options, handler);
+    }
     return super.onRequest(options, handler);
   }
 
