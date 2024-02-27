@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/core/utils/contact_service.dart';
 import 'package:xcrow/ui/bills/provider/airtime.dart';
-import 'package:xcrow/ui/onboarding/providers/user_provider.dart';
 import 'package:xcrow/ui/shared/app_input_field.dart';
 import 'package:xcrow/ui/theme/theme.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
@@ -17,16 +15,16 @@ class PhoneNumberWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appColor = context.customTheme<AppColors>();
     final phone = ref.watch(phoneNumberProvider);
-    final userNumber = ref.watch(userProvider.select((value) => value.phone));
-    useEffect(
-      () {
-        if (phone.text.isEmpty) {
-          phone.text = userNumber ?? '';
-        }
-        return;
-      },
-      const [],
-    );
+    // final userNumber = ref.watch(userProvider.select((value) => value.phone));
+    // useEffect(
+    //   () {
+    //     if (phone.text.isEmpty) {
+    //       phone.text = '$userNumber' ?? '';
+    //     }
+    //     return;
+    //   },
+    //   const [],
+    // );
     return AppInputField(
       titleWidget: Row(
         children: [

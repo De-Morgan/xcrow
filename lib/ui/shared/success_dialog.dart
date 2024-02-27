@@ -8,7 +8,21 @@ import 'package:xcrow/ui/utils/svg_path.dart';
 
 class SuccessDialog extends StatelessWidget {
   const SuccessDialog({super.key, required this.message});
+
   final String message;
+
+  static Future show(BuildContext context, {required String message}) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: SuccessDialog(
+              message: message,
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = context.customTheme<DashboardTheme>();
