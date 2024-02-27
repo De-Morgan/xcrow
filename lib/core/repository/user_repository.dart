@@ -32,9 +32,6 @@ class UserRepository {
           {required String email, required String password}) =>
       userService.signIn(email: email, password: password);
 
-  Future<AccountInfo> getUserAccountInfo() =>
-      userService.getUserAccountInfo(userId: userId);
-
   Future<bool> checkTransactionPin({required String pin}) =>
       userService.checkTransactionPin(userId: userId, pin: pin);
 
@@ -44,6 +41,9 @@ class UserRepository {
     sharedPreference.saveCustomer(user.copyWith(transactionPin: pin));
     return result;
   }
+
+  Future<AccountInfo> getAccountInfo() =>
+      userService.getAccountInfo(id: userId);
 }
 
 final userRepositoryProvider = Provider<UserRepository>((ref) {

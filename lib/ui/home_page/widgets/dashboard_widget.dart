@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xcrow/ui/home_page/pages/add_money_page.dart';
+import 'package:xcrow/ui/home_page/widgets/acount_fresh_widget.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
 import 'package:xcrow/ui/theme/font_familty.dart';
 import 'package:xcrow/ui/theme/theme.dart';
@@ -23,6 +24,7 @@ class DashboardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const AccountInfoFreshWidget(),
           Row(
             children: [
               const SvgWidget(

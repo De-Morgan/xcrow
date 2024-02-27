@@ -58,15 +58,6 @@ class UserService {
     }
   }
 
-  Future<AccountInfo> getUserAccountInfo({required int userId}) async {
-    try {
-      final response = await network.post('$serviceName/get/account');
-      return AccountInfo.fromJson(response.data);
-    } on ApiError {
-      rethrow;
-    }
-  }
-
   Future<bool> checkTransactionPin(
       {required int userId, required String pin}) async {
     try {
@@ -84,6 +75,17 @@ class UserService {
       final response = await network.post('$serviceName/set/transaction/pin',
           body: {'id': userId, 'pin': pin, 'email': email});
       return TypeSanitizer.sanitizeToBool(response.data['status']) ?? false;
+    } on ApiError {
+      rethrow;
+    }
+  }
+
+  Future<AccountInfo> getAccountInfo({required int id}) async {
+    try {
+      final response = await network.post('$serviceName/get/account', body: {
+        'id': id,
+      });
+      return AccountInfo.fromJson(response.data);
     } on ApiError {
       rethrow;
     }

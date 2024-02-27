@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xcrow/core/models/network.dart';
+import 'package:xcrow/core/utils/number_formatter.dart';
+import 'package:xcrow/ui/bills/provider/airtime.dart';
+import 'package:xcrow/ui/home_page/providers/account_info_provider.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
 import 'package:xcrow/ui/shared/padded_container.dart';
@@ -15,6 +19,9 @@ class AirtimeConfirmationPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appColor = context.customTheme<AppColors>();
     final pinController = useTextEditingController();
+    final phone = ref.watch(phoneNumberProvider).text;
+    final amount =
+        num.tryParse(ref.watch(airtimeAmountProvider).text.replaceAll(',', ''));
 
     return ScaffoldPagePaddingWidget(
       child: Scaffold(
@@ -29,7 +36,7 @@ class AirtimeConfirmationPage extends HookConsumerWidget {
                 children: [
                   const SizedBox(height: 32),
                   Text(
-                    '+234 9031139 287',
+                    phone,
                     style: context.bodyMedium?.copyWith(fontSize: 20),
                   ),
                   const SizedBox(height: 16),
@@ -39,7 +46,7 @@ class AirtimeConfirmationPage extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'N4000.00',
+                    'N${NumberFormatter.formatMoney(amount)}',
                     style: context.bodyMedium?.copyWith(fontSize: 20),
                   ),
                   const SizedBox(height: 16),
@@ -57,9 +64,18 @@ class AirtimeConfirmationPage extends HookConsumerWidget {
                               style: context.titleMedium,
                             ),
                             const Spacer(),
-                            Text(
-                              '2232211674',
-                              style: context.titleMedium,
+                            Consumer(
+                              builder: (BuildContext context, WidgetRef ref,
+                                  Widget? child) {
+                                final accountInfo =
+                                    ref.watch(accountInfoProvider);
+                                return accountInfo.maybeWhen(
+                                    orElse: () => const SizedBox(),
+                                    data: (value) => Text(
+                                          value?.accountno ?? '',
+                                          style: context.titleMedium,
+                                        ));
+                              },
                             ),
                           ],
                         ),
@@ -106,9 +122,16 @@ class AirtimeConfirmationPage extends HookConsumerWidget {
                               style: context.titleSmall?.copyWith(fontSize: 13),
                             ),
                             const Spacer(),
-                            Text(
-                              'Airtel Mobile',
-                              style: context.bodyMedium,
+                            Consumer(
+                              builder: (BuildContext context, WidgetRef ref,
+                                  Widget? child) {
+                                final selectedNetwork =
+                                    ref.watch(selectedAirtimeProvider);
+                                return Text(
+                                  selectedNetwork?.desc ?? '',
+                                  style: context.bodyMedium,
+                                );
+                              },
                             ),
                           ],
                         ),

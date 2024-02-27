@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xcrow/core/utils/number_formatter.dart';
 import 'package:xcrow/ui/bills/provider/airtime.dart';
 import 'package:xcrow/ui/theme/theme.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
@@ -15,9 +16,9 @@ class AirtimeAmountWidget extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ...['50', '100', '200'].map((e) => _AmountWidget(
-                  amount: e,
-                  onTap: () => airtimeController.text = e,
+            ...[50, 100, 200].map((e) => _AmountWidget(
+                  amount: '$e',
+                  onTap: () => airtimeController.text = '$e',
                 ))
           ],
         ),
@@ -25,9 +26,10 @@ class AirtimeAmountWidget extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ...['500', '1,000', '2,000'].map((e) => _AmountWidget(
-                  amount: e,
-                  onTap: () => airtimeController.text = e,
+            ...[500, 1000, 2000].map((e) => _AmountWidget(
+                  amount: NumberFormatter.formatMoneyNoTrailing(e),
+                  onTap: () => airtimeController.text =
+                      NumberFormatter.formatMoneyNoTrailing(e),
                 ))
           ],
         ),
@@ -66,7 +68,7 @@ class _AmountWidget extends StatelessWidget {
                   color: appColor.outlineColor),
             ),
             Text(
-              '$amount',
+              amount,
               style: context.bodyMedium?.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w300,

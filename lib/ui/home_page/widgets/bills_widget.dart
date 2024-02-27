@@ -30,7 +30,7 @@ class BillsWidget extends StatelessWidget {
               _BilWidgetItem(
                 title: 'Airtime'.toUpperCase(),
                 svgPath: SvgPath.call,
-                onTap: () => context.push(const AirtimePage()),
+                onTap: () => context.push(AirtimePage()),
               ),
               const _VerticalDivider(),
               const _BilWidgetItem(
@@ -62,7 +62,6 @@ class BillsWidget extends StatelessWidget {
               _BilWidgetItem(
                 title: 'Betting'.toUpperCase(),
                 svgPath: SvgPath.betting,
-                onTap: () => context.push(const AirtimePage()),
               ),
               const _VerticalDivider(),
               _BilWidgetItem(

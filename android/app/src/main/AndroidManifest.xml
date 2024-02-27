@@ -3,6 +3,11 @@
         android:label="xcrow"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <uses-permission android:name="android.permission.READ_CONTACTS"/>
+        <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

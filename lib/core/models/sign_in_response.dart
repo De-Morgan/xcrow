@@ -71,6 +71,7 @@ class SignInResponse {
     final map = <String, dynamic>{};
     map['avatar'] = avatar;
     map['phone'] = phone;
+    map['phone_code'] = phone_code;
     map['first_name'] = first_name;
     map['surname'] = surname;
     map['gender'] = gender;

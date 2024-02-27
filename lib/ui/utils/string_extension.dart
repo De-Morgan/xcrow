@@ -16,6 +16,17 @@ extension StringExtension on String? {
     return this!;
   }
 
+  String get sanitizePhoneNumber {
+    try {
+      if (this == null) return '';
+      final replace234 = this!.replaceFirst('+234', '0');
+      final newChars = replace234.replaceAll(RegExp('[^A-Za-z0-9]'), '');
+      return newChars.trim().substring(newChars.length - 11);
+    } catch (_) {
+      return this ?? '';
+    }
+  }
+
   String get capitalizeFirstOfEachWord => switch (this) {
         null => '',
         _ => this!

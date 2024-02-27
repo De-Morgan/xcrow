@@ -45,5 +45,8 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>NSContactsUsageDescription</key>
+	<string>Allow contact access to purchase airtime and data</string>
+
 </dict>
 </plist>
