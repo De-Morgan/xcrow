@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xcrow/ui/bills/pages/transaction_page.dart';
+import 'package:xcrow/ui/bills/pages/airtime_confirmation_page.dart';
 import 'package:xcrow/ui/bills/provider/airtime.dart';
 import 'package:xcrow/ui/bills/widgets/airtime_amount_widget.dart';
 import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
@@ -83,7 +83,7 @@ class AirtimePage extends ConsumerWidget {
                 const SizedBox(height: 40),
                 AppButton.elevatedButton(
                   onPressed: () {
-                    context.push(const TransactionPage());
+                    context.push(const AirtimeConfirmationPage());
                   },
                   label: 'Next',
                 )
