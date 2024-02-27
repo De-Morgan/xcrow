@@ -39,6 +39,14 @@ class PinInputWidget extends StatelessWidget {
           color: context
               .themeData.inputDecorationTheme.focusedBorder!.borderSide.color),
     );
+    final submittedPinTheme = defaultPinTheme.copyDecorationWith(
+      color: context
+          .themeData.inputDecorationTheme.focusedBorder!.borderSide.color
+          .withOpacity(0.1),
+      border: Border.all(
+          color: context
+              .themeData.inputDecorationTheme.focusedBorder!.borderSide.color),
+    );
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,6 +57,7 @@ class PinInputWidget extends StatelessWidget {
           length: length,
           defaultPinTheme: defaultPinTheme,
           focusedPinTheme: focusedPinTheme,
+          submittedPinTheme: submittedPinTheme,
           obscureText: obscureText,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           keyboardType: keyboardType,
