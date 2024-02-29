@@ -20,6 +20,8 @@ abstract class TransactionPinPage extends HookConsumerWidget {
   ValueChanged<String>? get onContinue;
   late WidgetRef ref;
   UserRepository get userRepository => ref.read(userRepositoryProvider);
+
+  bool get canPop => true;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     this.ref = ref;
@@ -37,7 +39,7 @@ abstract class TransactionPinPage extends HookConsumerWidget {
     }, const []);
     return FullPageLoadingWidget(
       child: WillPopScope(
-        onWillPop: () async => false,
+        onWillPop: () async => canPop,
         child: ScaffoldPagePaddingWidget(
           child: Scaffold(
             appBar: AppBarWidget(
@@ -68,6 +70,7 @@ abstract class TransactionPinPage extends HookConsumerWidget {
                   const SizedBox(height: 32),
                   PinInputWidget(
                     pinController: controller,
+                    keyboardType: TextInputType.none,
                   ),
                   const Spacer(),
                   Flexible(

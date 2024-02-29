@@ -11,6 +11,9 @@ class CreateTransactionPage extends TransactionPinPage {
   CreateTransactionPage({super.key});
 
   @override
+  bool get canPop => false;
+
+  @override
   ValueChanged<String>? get onContinue => (value) {
         ref.read(_pinProvider.notifier).state = value;
         ref.context.pushReplacement(VerifyTransactionPage());
