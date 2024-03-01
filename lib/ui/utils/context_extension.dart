@@ -98,7 +98,7 @@ extension BuildContextExtension on BuildContext {
         content: Row(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+              padding: const EdgeInsets.only(top: 16, bottom: 16),
               child: Icon(
                 Icons.error_outline_rounded,
                 color: errorColor,
