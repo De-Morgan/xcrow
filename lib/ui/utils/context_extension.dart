@@ -113,12 +113,6 @@ extension BuildContextExtension on BuildContext {
             ),
           ],
         ),
-        // action: SnackBarAction(
-        //     label: 'Dismiss',
-        //     //  textColor: const Color(0xffffffff),
-        //     onPressed: () {
-        //       ScaffoldMessenger.of(this).clearSnackBars();
-        //     }),
         padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
         duration: duration,
         behavior: SnackBarBehavior.floating,
