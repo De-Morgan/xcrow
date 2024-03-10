@@ -25,7 +25,7 @@ class AirtimeConfirmationPage extends HookConsumerWidget {
     final pinController = useTextEditingController();
     final phone = ref.watch(phoneNumberProvider).text;
     final amount =
-        num.tryParse(ref.watch(airtimeAmountProvider).text.replaceAll(',', ''));
+        num.tryParse(ref.watch(amountProvider).text.replaceAll(',', ''));
 
     Future<void> listenText() async {
       if (pinController.text.length == 6) {

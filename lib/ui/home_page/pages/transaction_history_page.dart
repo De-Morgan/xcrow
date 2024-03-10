@@ -3,7 +3,9 @@ import 'package:xcrow/ui/home_page/widgets/nav_page_padding.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
 import 'package:xcrow/ui/shared/padded_container.dart';
 import 'package:xcrow/ui/shared/search_widget.dart';
+import 'package:xcrow/ui/shared/svg_widget.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
+import 'package:xcrow/ui/utils/svg_path.dart';
 
 class TransactionHistoryPage extends StatelessWidget {
   const TransactionHistoryPage({super.key});
@@ -20,7 +22,14 @@ class TransactionHistoryPage extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 24),
-              const SearchWidget(),
+              const SearchWidget(
+                suffixIcon: Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 20),
+                  child: SvgWidget(
+                    svgPath: SvgPath.calendar,
+                  ),
+                ),
+              ),
               const SizedBox(height: 16),
               ...histories.map((e) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),

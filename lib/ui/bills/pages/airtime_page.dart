@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:xcrow/core/models/network.dart';
-import 'package:xcrow/core/utils/number_formatter.dart';
 import 'package:xcrow/ui/bills/pages/airtime_confirmation_page.dart';
 import 'package:xcrow/ui/bills/provider/airtime.dart';
 import 'package:xcrow/ui/bills/widgets/airtime_amount_widget.dart';
@@ -12,9 +10,9 @@ import 'package:xcrow/ui/shared/app_button.dart';
 import 'package:xcrow/ui/shared/app_input_field.dart';
 import 'package:xcrow/ui/shared/appbar_widget.dart';
 import 'package:xcrow/ui/shared/drop_down_widget.dart';
-import 'package:xcrow/ui/theme/theme.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
-import 'package:xcrow/ui/utils/string_extension.dart';
+
+import '../widgets/amount_widget.dart';
 
 class AirtimePage extends ConsumerWidget {
   AirtimePage({super.key});
@@ -23,8 +21,6 @@ class AirtimePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appColor = context.customTheme<AppColors>();
-    final airtimeController = ref.watch(airtimeAmountProvider);
     return ScaffoldPagePaddingWidget(
       horizontal: 24,
       child: Scaffold(
@@ -45,31 +41,7 @@ class AirtimePage extends ConsumerWidget {
                     child: AirtimeAmountWidget(),
                   ),
                   const SizedBox(height: 18),
-                  AppInputField(
-                    titleWidget: Row(
-                      children: [
-                        Text('Amount',
-                            style: context.titleMedium?.copyWith(fontSize: 13)),
-                        const Spacer(),
-                        Text(
-                          'Balance” 6,780.93',
-                          style: context.titleSmall?.copyWith(
-                              fontSize: 13, color: appColor.outlineColor),
-                        )
-                      ],
-                    ),
-                    child: TextFormField(
-                      controller: airtimeController,
-                      inputFormatters: [
-                        ThousandsFormatter(),
-                        LengthLimitingTextInputFormatter(13)
-                      ],
-                      decoration: const InputDecoration(hintText: 'N 0.00'),
-                      validator: (value) => value.nullToEmpty.isNotEmpty
-                          ? null
-                          : 'Enter a valid amount',
-                    ),
-                  ),
+                  const AmountWidget(),
                   const SizedBox(height: 18),
                   AppInputField(
                     title: 'Network',

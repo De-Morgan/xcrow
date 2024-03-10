@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xcrow/ui/bills/pages/airtime_page.dart';
+import 'package:xcrow/ui/bills/pages/electricity_page.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
 import 'package:xcrow/ui/theme/theme.dart';
 import 'package:xcrow/ui/utils/context_extension.dart';
@@ -57,6 +58,7 @@ class BillsWidget extends StatelessWidget {
               _BilWidgetItem(
                 title: 'Electricity'.toUpperCase(),
                 svgPath: SvgPath.electricity,
+                onTap: () => context.push(ElectricityPage()),
               ),
               const _VerticalDivider(),
               _BilWidgetItem(

@@ -4,11 +4,16 @@ import 'package:xcrow/ui/utils/context_extension.dart';
 import 'package:xcrow/ui/utils/svg_path.dart';
 
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({super.key});
-
+  const SearchWidget(
+      {super.key, this.controller, this.onChanged, this.suffixIcon});
+  final TextEditingController? controller;
+  final Widget? suffixIcon;
+  final ValueChanged<String?>? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
+      onChanged: onChanged,
       decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(3),
@@ -27,12 +32,7 @@ class SearchWidget extends StatelessWidget {
             ),
           ),
           suffixIconConstraints: const BoxConstraints(maxWidth: 62),
-          suffixIcon: const Padding(
-            padding: EdgeInsets.only(left: 20.0, right: 20),
-            child: SvgWidget(
-              svgPath: SvgPath.calendar,
-            ),
-          )),
+          suffixIcon: suffixIcon),
     );
   }
 }

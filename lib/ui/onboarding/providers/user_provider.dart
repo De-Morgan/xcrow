@@ -11,3 +11,8 @@ final userIdProvider = Provider<int>((ref) {
   final user = ref.watch(userProvider);
   return user.id ?? -1;
 });
+
+final userEmailProvider = Provider<String>((ref) {
+  final user = ref.watch(userProvider);
+  return user.email ?? '';
+});

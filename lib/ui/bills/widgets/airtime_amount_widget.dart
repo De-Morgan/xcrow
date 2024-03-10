@@ -10,7 +10,7 @@ class AirtimeAmountWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final airtimeController = ref.watch(airtimeAmountProvider);
+    final airtimeController = ref.watch(amountProvider);
     return Column(
       children: [
         Row(
