@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xcrow/ui/bills/pages/airtime_page.dart';
+import 'package:xcrow/ui/bills/pages/cable_tv_page.dart';
 import 'package:xcrow/ui/bills/pages/electricity_page.dart';
 import 'package:xcrow/ui/shared/svg_widget.dart';
 import 'package:xcrow/ui/theme/theme.dart';
@@ -69,6 +70,7 @@ class BillsWidget extends StatelessWidget {
               _BilWidgetItem(
                 title: 'Cable TV'.toUpperCase(),
                 svgPath: SvgPath.cableTv,
+                onTap: ()=>context.push(CableTvPage()),
               ),
               const _VerticalDivider(),
               _BilWidgetItem(
