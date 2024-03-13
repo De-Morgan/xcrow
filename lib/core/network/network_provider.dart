@@ -76,6 +76,7 @@ class NetworkProvider {
   Future<Response> get(
     String path, {
     Map<String, dynamic>? queryParameters,
+        Map<String, dynamic>? body,
     CancelToken? cancelToken,
     ProgressCallback? progressCallback,
   }) async {
@@ -83,6 +84,7 @@ class NetworkProvider {
       return await _dio.get(path,
           queryParameters: queryParameters,
           cancelToken: cancelToken,
+          data: body,
           onReceiveProgress: progressCallback);
     } on DioException catch (error) {
       throw ApiError.fromDioException(error);
