@@ -9,12 +9,12 @@ import 'package:xcrow/ui/utils/context_extension.dart';
 import 'package:xcrow/ui/utils/string_extension.dart';
 
 class AmountWidget extends ConsumerWidget {
-  const AmountWidget({super.key});
-
+  const AmountWidget({super.key,this.readOnly = false});
+  final bool readOnly;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appColor = context.customTheme<AppColors>();
-    final airtimeController = ref.watch(amountProvider);
+    final amountontroller = ref.watch(amountProvider);
 
     return AppInputField(
       titleWidget: Row(
@@ -29,7 +29,8 @@ class AmountWidget extends ConsumerWidget {
         ],
       ),
       child: TextFormField(
-        controller: airtimeController,
+        controller: amountontroller,
+        readOnly: readOnly,
         inputFormatters: [
           ThousandsFormatter(),
           LengthLimitingTextInputFormatter(13)

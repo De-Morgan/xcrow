@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:xcrow/core/models/type_sanitizer.dart';
 
 enum TvCable { dstv, gotv, startimes, showmax }
@@ -33,7 +34,7 @@ class TvPackage {
           []);
 }
 
-class TvVariation {
+class TvVariation extends Equatable{
   String? variation_code;
   String? name;
   String? fixedPrice;
@@ -45,11 +46,14 @@ class TvVariation {
     fixedPrice = TypeSanitizer.sanitizeToString(json['fixedPrice']);
     variation_amount = TypeSanitizer.sanitizeToNum(json['variation_amount']);
   }
+
+  @override
+  List<Object?> get props => [variation_amount,variation_code,name,fixedPrice];
 }
 
 class TvVerification {
   final String? customer_Name;
-  final String? status,
+  final String? status,error,
       code,
       due_Date,
       customer_Type,
@@ -65,15 +69,20 @@ class TvVerification {
       this.current_Bouquet,
       this.current_Bouquet_Code,
       this.customer_Number,
+        this.error,
       this.customer_Type,
       this.renewal_Amount});
 
-  // factory TvPackage.fromString(String jsonString)=>TvPackage.fromJson(
-  //     jsonDecode(jsonString)
-  // );
+  factory TvVerification.fromString(String jsonString)=>TvVerification.fromJson(
+      jsonDecode(jsonString)
+  );
   factory TvVerification.fromJson(dynamic json) => TvVerification(
         code: TypeSanitizer.sanitizeToString(json['code']),
-        customer_Name:
+
+    error:
+    TypeSanitizer.sanitizeToString(json['content']?['error']),
+
+    customer_Name:
             TypeSanitizer.sanitizeToString(json['content']?['customer_Name']),
         status: TypeSanitizer.sanitizeToString(json['content']?['Status']),
         current_Bouquet:

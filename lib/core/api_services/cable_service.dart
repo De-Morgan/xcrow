@@ -29,11 +29,11 @@ class TvCableService {
     required String tvCard,
   }) async {
     try {
-      final response =  await network.get('$serviceName/verify', body: {
+      final response =  await network.post('$serviceName/verify', body: {
         'serviceId': serviceId,
         'tvCard':tvCard
       });
-      return TvVerification.fromJson(response.data['data']);
+      return TvVerification.fromString(response.data['data']);
     } on ApiError {
       rethrow;
     }

@@ -34,6 +34,7 @@ class SelectTvPackageWidget extends ConsumerWidget {
     final serviceId =
         ref.watch(selectedTvCableProvider.select((value) => value?.name));
     final package = ref.watch(tvPackageProvider(serviceId));
+    final variation = ref.watch(selectedTvPackageProvider);
     return package.maybeWhen(
         data: (packages) =>
             packages ==null?AppDropDownWidget(
@@ -44,8 +45,10 @@ class SelectTvPackageWidget extends ConsumerWidget {
             AppDropDownWidget<TvVariation>(
               key: UniqueKey(),
               data: packages.varations,
+              initialData: variation,
               title: 'Choose a package',
               builder: (data) => Text('${data.name}'),
+              onChange: (package)=>ref.read(selectedTvPackageProvider.notifier).state = package
             ),
         orElse: () => const SizedBox(),
         error: (error,_)=>Text('$error'),

@@ -4,47 +4,32 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:xcrow/ui/utils/provider_ref_extension.dart';
 import 'package:xcrow/ui/utils/string_extension.dart';
 
-class TvCardNumberWidget extends HookConsumerWidget {
+class TvCardNumberWidget extends ConsumerWidget {
   const TvCardNumberWidget({super.key});
 
-  int get meterNumberLength => 11;
+  int get meterNumberLength => 15;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = useTextEditingController();
-    //
-    // void transferNumberListener() {
-    //   if (controller.text.length == meterNumberLength) {
-    //     ref.read(meterNumberProvider.notifier).state = controller.text;
-    //   } else {
-    //     ref.invalidate(meterNumberProvider);
-    //   }
-    // }
-    //
-    // useEffect(
-    //   () {
-    //     controller.addListener(transferNumberListener);
-    //     return () => controller.removeListener(transferNumberListener);
-    //   },
-    //   const [],
-    // );
+    final controller =  ref.watch(tvCardNumberTxtCtrProvider);
     return TextFormField(
       controller: controller,
-      keyboardType: TextInputType.number,
       inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
         LengthLimitingTextInputFormatter(meterNumberLength)
       ],
-      decoration: const InputDecoration(hintText: 'Meter Number'),
-      validator: (value) => value.nullToEmpty.length != meterNumberLength
-          ? 'Enter a valid meter number'
+      decoration: const InputDecoration(
+          hintText: 'Smart Card Numbers'
+      ),
+      validator: (value) => value.nullToEmpty.length < 5
+          ? 'Enter a valid card number'
           : null,
     );
   }
 }
 
 final tvCardNumberProvider = StateProvider.autoDispose<String>((ref) => '');
+final tvCardNumberTxtCtrProvider = Provider.autoDispose<TextEditingController>((ref) => ref.textController);
