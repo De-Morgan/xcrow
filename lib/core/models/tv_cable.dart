@@ -19,9 +19,10 @@ class TvPackage {
   final List<TvVariation> varations;
 
   TvPackage({this.serviceID, this.serviceName, this.varations = const []});
-  factory TvPackage.fromString(String jsonString)=>TvPackage.fromJson(
-    jsonDecode(jsonString)
-  );
+
+  factory TvPackage.fromString(String jsonString) =>
+      TvPackage.fromJson(jsonDecode(jsonString));
+
   factory TvPackage.fromJson(dynamic json) => TvPackage(
       serviceID: TypeSanitizer.sanitizeToString(json['content']?['serviceID']),
       serviceName:
@@ -44,4 +45,46 @@ class TvVariation {
     fixedPrice = TypeSanitizer.sanitizeToString(json['fixedPrice']);
     variation_amount = TypeSanitizer.sanitizeToNum(json['variation_amount']);
   }
+}
+
+class TvVerification {
+  final String? customer_Name;
+  final String? status,
+      code,
+      due_Date,
+      customer_Type,
+      current_Bouquet,
+      current_Bouquet_Code;
+  final int? customer_Number, renewal_Amount;
+
+  TvVerification(
+      {this.customer_Name,
+      this.status,
+      this.code,
+      this.due_Date,
+      this.current_Bouquet,
+      this.current_Bouquet_Code,
+      this.customer_Number,
+      this.customer_Type,
+      this.renewal_Amount});
+
+  // factory TvPackage.fromString(String jsonString)=>TvPackage.fromJson(
+  //     jsonDecode(jsonString)
+  // );
+  factory TvVerification.fromJson(dynamic json) => TvVerification(
+        code: TypeSanitizer.sanitizeToString(json['code']),
+        customer_Name:
+            TypeSanitizer.sanitizeToString(json['content']?['customer_Name']),
+        status: TypeSanitizer.sanitizeToString(json['content']?['Status']),
+        current_Bouquet:
+            TypeSanitizer.sanitizeToString(json['content']?['Current_Bouquet']),
+    due_Date:
+    TypeSanitizer.sanitizeToString(json['content']?['Due_Date']),
+    customer_Type:
+    TypeSanitizer.sanitizeToString(json['content']?['Customer_Type']),
+    current_Bouquet_Code:
+    TypeSanitizer.sanitizeToString(json['content']?['Current_Bouquet_Code']),
+    renewal_Amount:
+    TypeSanitizer.sanitizeToInt(json['content']?['Renewal_Amount']),
+  );
 }

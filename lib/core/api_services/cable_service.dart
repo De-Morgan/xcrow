@@ -23,6 +23,21 @@ class TvCableService {
       rethrow;
     }
   }
+
+  Future<TvVerification> verifyTvPackage({
+    required String serviceId,
+    required String tvCard,
+  }) async {
+    try {
+      final response =  await network.get('$serviceName/verify', body: {
+        'serviceId': serviceId,
+        'tvCard':tvCard
+      });
+      return TvVerification.fromJson(response.data['data']);
+    } on ApiError {
+      rethrow;
+    }
+  }
 }
 
 final tvCableServiceProvider = Provider<TvCableService>((ref) {
